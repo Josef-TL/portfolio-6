@@ -16,9 +16,24 @@ const connection = db.createConnection({
 });
 
 app.get('/cafes',(req,res)=>{
-    const queryParameter = req.query.type;
-    const q = "SELECT * FROM cafes";
-    connection.query(q, (error, results)=>{
+    let queryParameterName = "";
+    let queryParameterCity = "";
+
+    if (req.query.cafename !== undefined) queryParameterName = req.query.cafename;
+    if (req.query.cafecity !== undefined) queryParameterCity = req.query.cafecity;
+
+    const q = "SELECT * FROM cafes WHERE (cafe_name LIKE ?) AND (city LIKE ?)"
+    connection.query(q,[queryParameterName+"%",queryParameterCity+"%"], (error, results)=>{
+        res.send(results);
+    })
+});
+
+app.get('/users',(req,res)=>{
+    let queryParameter = ""
+    if (req.query.username !== undefined) queryParameter = req.query.username
+
+    const q = "SELECT * FROM users WHERE (user_name LIKE ?)";
+    connection.query(q,[queryParameter+"%"], (error, results)=>{
         res.send(results);
     })
 });
@@ -37,13 +52,6 @@ app.get('/users/id/:id',(req,res)=>{
     })
 });
 
-app.get('/users',(req,res)=>{
-    const queryParameter = req.query.type;
-    const q = "SELECT * FROM users";
-    connection.query(q, (error, results)=>{
-        res.send(results);
-    })
-});
 
 app.post('/cafes/new',(req,res)=>{
 

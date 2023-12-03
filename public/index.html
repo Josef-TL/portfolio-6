@@ -8,17 +8,52 @@
 
 </head>
 <body>
-<div>
-    <h1>HI</h1>
-    <a href="new-user.html">Tryk her for at oprette en ny bruger</a>
-    <a href="new-cafe.html">Tryk her for at oprette en ny cafe</a>
-
+<main>
+    <h1>Cafe database</h1>
+    <div class="container">
     <form action="">
-        <input type="text" name="type" id="tes-1">
-        <input type="text" name="number" id="tes2">
-        <button type="submit">Test</button>
+        <div>
+        <label for="cafe-search-name">Cafe Name</label>
+        <input type="text" name="cafename" id="cafe-search-name">
+        </div>
+        <div>
+        <label for="cafe-search-city">Cafe City</label>
+        <input type="text" name="cafecity" id="cafe-search-city">
+        </div>
+        <button type="submit">Search City</button>
     </form>
-</div>
+    </div>
+    <div class="container">
+    <form action="">
+        <div>
+            <label for="user-search">Username</label>
+            <input type="text" name="username" id="user-search">
+        </div>
+
+        <button type="submit">Search Users</button>
+    </form>
+    </div>
+
+    <div>
+        <h2>List of Cafes</h2>
+        <ul id="cafe-list">
+        </ul>
+    </div>
+
+    <div>
+        <h2>List of Users</h2>
+        <ul id="user-list">
+        </ul>
+    </div>
+
+    <div>
+        <a href="new-user.html">Tryk her for at oprette en ny bruger</a>
+        <a href="new-cafe.html">Tryk her for at oprette en ny cafe</a>
+
+    </div>
+
+</main>
+
 </body>
 <script src="main.js"></script>
 </html>
