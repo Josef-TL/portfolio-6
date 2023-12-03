@@ -23,6 +23,20 @@ app.get('/cafes',(req,res)=>{
     })
 });
 
+app.get('/cafes/id/:id',(req,res)=>{
+    const queryParameter = req.params.id;
+    connection.query(`SELECT * FROM cafes WHERE cafe_id = ?`,[queryParameter], (error, results)=>{
+        res.send(results);
+    })
+});
+
+app.get('/users/id/:id',(req,res)=>{
+    const queryParameter = req.params.id;
+    connection.query(`SELECT * FROM users WHERE user_id = ?`,[queryParameter], (error, results)=>{
+        res.send(results);
+    })
+});
+
 app.get('/users',(req,res)=>{
     const queryParameter = req.query.type;
     const q = "SELECT * FROM users";
@@ -31,27 +45,32 @@ app.get('/users',(req,res)=>{
     })
 });
 
-app.post('cafes/new',(req,res)=>{
-    const id = req.body.name;
-    const name = req.body.primary;
+app.post('/cafes/new',(req,res)=>{
+
+    const name =  req.body.cafe_name;
+    const type =  req.body.type;
+    const city =  req.body.city;
+    const cost =  req.body.cost;
+    const study = req.body.study;
 
 
-    // Dette er opgave A
-    connection.query('INSERT INTO cafes(cafe_id,cafe_name) VALUES(?,?)',
-        [id,name],
+    connection.query('INSERT INTO cafes(cafe_name,city,cost,`type`,study) VALUES(?,?,?,?,?)',
+        [name,city,cost,type,study],
         (error,result)=>{
             res.send("Successful POST request");
         });
 });
 
-app.post('users/new',(req,res)=>{
-    const id = req.body.name;
-    const name = req.body.primary;
+app.post('/users/new',(req,res)=>{
 
+    const uName =  req.body.uName;
+    const fName =  req.body.fName;
+    const lName =  req.body.lName;
+    const email =  req.body.email;
 
     // Dette er opgave A
-    connection.query('INSERT INTO cafes(cafe_id,cafe_name) VALUES(?,?)',
-        [id,name],
+    connection.query('INSERT INTO users(user_name,first_name,last_name,email)  VALUES(?,?,?,?)',
+        [uName,fName,lName,email],
         (error,result)=>{
             res.send("Successful POST request");
         });

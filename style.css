@@ -6,7 +6,7 @@ body{
     display: flex;
     align-items: center;
     height: 100%;
-    padding: 1.5rem 0;
+    padding: 20px 0;
 }
 
 main {
@@ -27,35 +27,31 @@ form {
     min-height: 60px;
     padding: 20px 16px;
     width: 100%;
+    margin-bottom: 20px;
 }
 
-.form-div>.input-field:focus ~ label{
-    display: none;
-}
 
 .form-div {
     position: relative;
 }
 
+
+
 .form-div label{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
     text-align: start;
     height: 100%;
-    padding: 1rem 0.75rem;
+    padding: 20px 17px;
     overflow: hidden;
-    transform-origin: 0 0;
-    transition: opacity .1s ease-in-out,transform .1s ease-in-out;
 }
+
+
 
 
 /* CSS  taget fra https://getcssscan.com/css-buttons-examples
 button no. 9
 */
+
 .submit-button {
-    appearance: button;
     backface-visibility: hidden;
     background-color: #405cf5;
     border-radius: 6px;
