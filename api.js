@@ -16,17 +16,28 @@ const connection = db.createConnection({
 });
 
 app.get('/cafes',(req,res)=>{
+
+    const q = "SELECT * FROM cafes";
+
+    connection.query(q, (error, results)=>{
+        res.send(results);
+    })
+});
+
+app.get('/cafes/search',(req,res)=>{
     let queryParameterName = "";
     let queryParameterCity = "";
 
     if (req.query.cafename !== undefined) queryParameterName = req.query.cafename;
     if (req.query.cafecity !== undefined) queryParameterCity = req.query.cafecity;
+    const q = "SELECT * FROM cafes WHERE (cafe_name LIKE ?) AND (location LIKE ?)";
 
-    const q = "SELECT * FROM cafes WHERE (cafe_name LIKE ?) AND (city LIKE ?)"
     connection.query(q,[queryParameterName+"%",queryParameterCity+"%"], (error, results)=>{
         res.send(results);
     })
 });
+
+
 
 app.get('/users',(req,res)=>{
     let queryParameter = ""
@@ -55,15 +66,20 @@ app.get('/users/id/:id',(req,res)=>{
 
 app.post('/cafes/new',(req,res)=>{
 
-    const name =  req.body.cafe_name;
-    const type =  req.body.type;
-    const city =  req.body.city;
-    const cost =  req.body.cost;
-    const study = req.body.study;
+    const name = req.body.cafe_name
+    const loc  = req.body.location
+    const cost = req.body.cost
+    const wifi = req.body.wifi
+    const noise = req.body.noise
+    const food = req.body.food
+    const group  = req.body.group
+    const gluten  = req.body.gluten
+    const veg  = req.body.veg
+    const pet = req.body.pet
 
 
-    connection.query('INSERT INTO cafes(cafe_name,city,cost,`type`,study) VALUES(?,?,?,?,?)',
-        [name,city,cost,type,study],
+    connection.query('insert into cafes(cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets) VALUES(?,?,?,?,?,?,?,?,?,?)',
+        [name,loc,cost,wifi,noise,food,group,gluten,veg,pet],
         (error,result)=>{
             res.send("Successful POST request");
         });
