@@ -26,14 +26,3 @@ fetch("http://localhost:3000/users"+queryString)
         });
     });
 
-/*
-submitButtonUser.addEventListener("click",()=>{
-    const newUsername = document.querySelector("#user-name").value;
-    const newUserFirstName = document.querySelector("#first-name").value;
-    const newUserLastName = document.querySelector("#last-name").value;
-    const newUserEmail = document.querySelector("#email").value;
-
-    sendNewUser(newUsername,newUserFirstName,newUserLastName,newUserEmail);
-
-});*/
-
