@@ -1,4 +1,4 @@
-const express = require('express');
+    const express = require('express');
 const cors = require('cors');
 const db = require('mysql2');
 
@@ -11,7 +11,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"c@_@*u-YGTKcxrc4Fp!6",
+    password:"Tipsbladet!1997",
     database:"cafes"
 });
 
