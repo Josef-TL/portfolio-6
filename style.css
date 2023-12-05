@@ -1,5 +1,33 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding:0;
+}
+
+ul {
+    list-style: none;
+}
+
+#cafe-list {
+    display: flex;
+}
+
+.cafe-item {
+    border-color: black;
+    border-style: solid;
+    display: block;
+    padding: 12px;
+    margin: 6px;
+    width: 170px;
+    height: 170px;
+}
+
+.cafe-wrap {
+    display:flex;
+    justify-content: space-between;
+}
+.cafe-wrap p{
+    padding: 2px;
 }
 
 body{
