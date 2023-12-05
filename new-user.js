@@ -23,3 +23,13 @@ function sendNewUser(uName,fName,lName,email) {
 
 
 const submitButtonUser = document.querySelector("#user-button");
+
+submitButtonUser.addEventListener("click",()=>{
+    const newUsername = document.querySelector("#user-name").value;
+    const newUserFirstName = document.querySelector("#first-name").value;
+    const newUserLastName = document.querySelector("#last-name").value;
+    const newUserEmail = document.querySelector("#email").value;
+
+    sendNewUser(newUsername,newUserFirstName,newUserLastName,newUserEmail);
+
+});
