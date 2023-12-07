@@ -57,6 +57,12 @@ app.get('/cafes/id/:id',(req,res)=>{
     })
 });
 
+app.get('/cafes/hours',(req,res)=>{
+    connection.query(`SELECT * FROM business_hours`, (error, results)=>{
+        res.send(results);
+    })
+});
+
 app.get('/users/id/:id',(req,res)=>{
     const queryParameter = req.params.id;
     connection.query(`SELECT * FROM users WHERE user_id = ?`,[queryParameter], (error, results)=>{
