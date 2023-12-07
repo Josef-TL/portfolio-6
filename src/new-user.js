@@ -147,3 +147,16 @@ document.querySelector('.login-button').addEventListener('click', function logIn
         }
     });
 });
+
+//Sign user out
+import { signOut } from "firebase/auth";
+
+const signOutButton = document.getElementById('signOutButton');
+
+signOutButton.addEventListener('click', function() {
+    signOut(auth).then(() => {
+        console.log("Signed out successfully.");
+    }).catch((error) => {
+        console.error("Error signing out: ", error);
+    });
+});
