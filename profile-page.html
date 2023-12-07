@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wholePage">
+    <div class="userSection">
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <div id="photoDisplayArea" style="width: 75px; height: 75px; border: 1px solid black;"></div>
+            <h3>Username</h3>
+            <label for="profilePhoto">Upload Profile Photo:</label>
+            <input type="file" id="profilePhoto" name="profilePhoto">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+
+    <div class="favoritter">
+        <h3>Favoritter</h3>
+        <ul>
+            <li>Cafe 1</li>
+            <li>Cafe 2</li>
+            <li>Cafe3</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+<script src="profile-page.js"></script>
+</html>
