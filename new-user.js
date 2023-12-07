@@ -1,9 +1,22 @@
+/*
 // Import the functions for firebase
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { signOut } from "firebase/auth";
+import {onAuthStateChanged} from "firebase/auth";
+ */
+/*
+Replace all your import lines to use the following pattern:
+import { } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-SERVICE.js'
+(where SERVICE is an SDK name such as firebase-firestore).
+ */
+
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js'
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyA00_9W4TP9UlVOxTcAi3AKT9HskTeNhn0",
@@ -97,6 +110,7 @@ function validateForm() {
 }
 
 // Add an event listener to the submitButtonUser button
+if(submitButtonUser){
 submitButtonUser.addEventListener("click", (event) => {
     event.preventDefault();  // Prevent the default form submission
 
@@ -128,36 +142,60 @@ submitButtonUser.addEventListener("click", (event) => {
         console.log("Form validation failed");
     }
 });
+}
 
 // The user are sign-in to the webside
-
-document.querySelector('.login-button').addEventListener('click', function logIn() {
+const loginButton = document.querySelector('.login-button')
+if(loginButton){
+loginButton.addEventListener('click', function logIn() {
     // Listen for changes in the user's authentication state
-const username = document.querySelector(".username").value
-    const password = document.querySelector(".password").value
+    const username = document.querySelector(".username").value;
+    const password = document.querySelector(".password").value;
     signInWithEmailAndPassword(auth, username, password)
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
             console.log(true)
-            window.location.href ='/index.html'
-        })
+
+        }).then(()=>
+        window.location.replace('index.html'))
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(false)
         });
 });
-
+}
 //Sign user out from the user
 
 const signOutButton = document.getElementById('signOutButton');
 
+if(signOutButton){
 signOutButton.addEventListener('click', function() {
     signOut(auth).then(() => {
         console.log("Signed out successfully.");
-        window.location.href ='/index.html'
-    }).catch((error) => {
+        //window.location.href ='/index.html'
+    }).then(()=>
+        window.location.replace('index.html'))
+        .catch((error) => {
         console.error("Error signing out: ", error);
     });
 });
+}
+
+const user = auth.currentUser;
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        let uid = user.uid;
+        // ...
+        // 👈 This is where you can also query the database as the user for the first time
+        console.log(uid)
+    } else {
+        // User is signed out
+        // ...
+        console.log("test2")
+    }
+});
+
