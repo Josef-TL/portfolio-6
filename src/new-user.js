@@ -140,7 +140,7 @@ const username = document.querySelector(".username").value
             // Signed in
             const user = userCredential.user;
             console.log(true)
-            // ...
+            window.location.href ='/index.html'
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -156,6 +156,7 @@ const signOutButton = document.getElementById('signOutButton');
 signOutButton.addEventListener('click', function() {
     signOut(auth).then(() => {
         console.log("Signed out successfully.");
+        window.location.href ='/index.html'
     }).catch((error) => {
         console.error("Error signing out: ", error);
     });
