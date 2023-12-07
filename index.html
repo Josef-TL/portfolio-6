@@ -9,16 +9,7 @@
 </head>
 <body>
 
-<div class="navTop">
-    <div class="nav-container">
-        <img src="LogoP62.png" alt="Your Image">
-        <div class="nav-buttons">
-            <a class="active" href="new-user.html">Sign Up</a>
-            <a href="new-cafe.html">Add Cafe</a>
-            <a href="about-us.html">About</a>
-        </div>
-    </div>
-</div>
+<div class="navbar-container"></div>
 
 <main>
     <h1>Cafe database</h1>
@@ -63,6 +54,21 @@
         <a href="new-cafe.html">Tryk her for at oprette en ny cafe</a>
 
     </div>
+
+    <script>
+        // Load the navigation bar dynamically from navbar.html
+        const navbarContainer = document.querySelector(".navbar-container");
+
+        // Use fetch to load the content of navbar.html
+        fetch("navbar.html")
+            .then((response) => response.text())
+            .then((html) => {
+                // Insert the content into the navbarContainer
+                navbarContainer.innerHTML = html;
+            })
+            .catch((error) => console.error("Error loading navigation bar:", error));
+    </script>
+
 
 </main>
 

@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="navbar-container"></div>
+
 <main>
-    <h1>Create New Cafe</h1>
     <form>
+        <h1>Create New Cafe</h1>
         <div class="form-div">
             <label for="cafe-name">Cafe name </label>
             <input class="input-field" type="text" id="cafe-name">
@@ -67,6 +70,21 @@
 
     <a href="index.html">Tryk her for at gå tilbage til main menu</a>
 </main>
+
+<script>
+    // Load the navigation bar dynamically from navbar.html
+    const navbarContainer = document.querySelector(".navbar-container");
+
+    // Use fetch to load the content of navbar.html
+    fetch("navbar.html")
+        .then((response) => response.text())
+        .then((html) => {
+            // Insert the content into the navbarContainer
+            navbarContainer.innerHTML = html;
+        })
+        .catch((error) => console.error("Error loading navigation bar:", error));
+</script>
+
 </body>
 <script src="new-cafe.js"></script>
 </html>
