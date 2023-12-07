@@ -24,6 +24,10 @@ app.get('/cafes',(req,res)=>{
     })
 });
 
+    app.get('/signin', (req, res) => {
+        res.sendFile(__dirname + '/index.html');
+    });
+
 app.get('/cafes/search',(req,res)=>{
     let queryParameterName = "";
     let queryParameterCity = "";

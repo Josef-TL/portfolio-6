@@ -129,7 +129,7 @@ submitButtonUser.addEventListener("click", (event) => {
 
 // Check if the user are sign-in to the webside
 
-document.querySelector('.log-in').addEventListener('click', function logIn() {
+document.querySelector('.login-button').addEventListener('click', function logIn() {
     // Listen for changes in the user's authentication state
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -137,8 +137,10 @@ document.querySelector('.log-in').addEventListener('click', function logIn() {
             const uid = user.uid;
             console.log(`User with UID ${uid} is signed in.`);
             // Perform actions for a signed-in user if needed
-
-        } else {
+            fetch("http://localhost:3000/signin")
+                .then(res => res.sendFile(__dirname + '/index.html'))
+        }
+        else {
             // User is signed out
             console.log('User is signed out.');
             // Perform actions for a signed-out user if needed
