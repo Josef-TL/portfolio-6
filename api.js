@@ -92,6 +92,10 @@ app.post('/users/new',(req,res)=>{
     const lName =  req.body.lName;
     const email =  req.body.email;
 
+console.log(uName)
+    console.log(fName)
+    console.log(lName)
+    console.log(email)
     // Dette er opgave A
     connection.query('INSERT INTO users(user_name,first_name,last_name,email)  VALUES(?,?,?,?)',
         [uName,fName,lName,email],

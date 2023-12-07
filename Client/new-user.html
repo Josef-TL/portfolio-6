@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>New User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -16,35 +16,36 @@
             <input class="input-field" type="text" id="user-name">
             <span id="userError" class="error"></span>
         </div>
+
+        <div class="form-div">
+            <label for="first-name">Firstname</label>
+            <input class="input-field" type="text" id="first-name">
+
+        </div>
+        <div class="form-div">
+        <label for="last-name">Lastname</label>
+        <input class="input-field" type="text" id="last-name">
+    </div>
+
+        <div class="form-div">
+            <label for="email">Email</label>
+            <input class="input-field" type="text" id="email">
+            <span id="emailError" class="error"></span>
+
+        </div>
         <div class="form-div">
             <label for="password">Password: </label>
             <input class="input-field" type="text" id="password">
             <span id="passwordError" class="error"></span>
         </div>
 
-        <div class="form-div">
-            <label for="email">email</label>
-            <input class="input-field" type="text" id="email">
-            <span id="emailError" class="error"></span>
-
-        </div>
-        <div class="form-div">
-            <label for="first-name">first name</label>
-            <input class="input-field" type="text" id="first-name">
-
-        </div>
-        <div class="form-div">
-            <label for="last-name">last name</label>
-            <input class="input-field" type="text" id="last-name">
-
-        </div>
 
         <div>
-            <button type="submit" class="submit-button" id="user-button">Submit</button>
+            <button type="button" class="submit-button" id="user-button">Submit</button>
         </div>
     </form>
-    <a href="index.html">Tryk her for at gå tilbage til main menu</a>
+    <a href="../index.html">Tryk her for at gå tilbage til main menu</a>
 </main>
 </body>
-<script type="module" src="new-user.js"></script>
+<script src="./main.js"></script>
 </html>

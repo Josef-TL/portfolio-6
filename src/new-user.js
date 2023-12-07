@@ -1,5 +1,4 @@
-// Import the functions you need from the SDKs you need
-/*
+// Import the functions for firebase
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -19,9 +18,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
- */
-
-
+// Post new user to SQL server
 function sendNewUser(uName,fName,lName,email) {
 
     const jsonObjectToPost = {
@@ -106,10 +103,11 @@ submitButtonUser.addEventListener("click", (event) => {
     if (isFormValid) {
         // If the form is valid, proceed with user creation and data sending
         const newUsername = document.querySelector("#user-name").value;
-        const password = document.querySelector("#password").value;
         const newUserFirstName = document.querySelector("#first-name").value;
         const newUserLastName = document.querySelector("#last-name").value;
         const newUserEmail = document.querySelector("#email").value;
+        const password = document.querySelector("#password").value;
+
 
         createUserWithEmailAndPassword(auth, newUserEmail, password)
             .then((userCredential) => {
@@ -129,3 +127,21 @@ submitButtonUser.addEventListener("click", (event) => {
     }
 });
 
+// Check if the user are sign-in to the webside
+
+document.querySelector('.log-in').addEventListener('click', function logIn() {
+    // Listen for changes in the user's authentication state
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in
+            const uid = user.uid;
+            console.log(`User with UID ${uid} is signed in.`);
+            // Perform actions for a signed-in user if needed
+
+        } else {
+            // User is signed out
+            console.log('User is signed out.');
+            // Perform actions for a signed-out user if needed
+        }
+    });
+});
