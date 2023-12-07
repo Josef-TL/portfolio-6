@@ -11,7 +11,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"Buster42Kuller",
+    password:"Tipsbladet!1997",
     database:"cafes"
 });
 

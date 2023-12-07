@@ -1,7 +1,9 @@
 // Import the functions for firebase
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import {signInWithEmailAndPassword } from "firebase/auth";
+import { signOut } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA00_9W4TP9UlVOxTcAi3AKT9HskTeNhn0",
@@ -127,29 +129,27 @@ submitButtonUser.addEventListener("click", (event) => {
     }
 });
 
-// Check if the user are sign-in to the webside
+// The user are sign-in to the webside
 
 document.querySelector('.login-button').addEventListener('click', function logIn() {
     // Listen for changes in the user's authentication state
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is signed in
-            const uid = user.uid;
-            console.log(`User with UID ${uid} is signed in.`);
-            // Perform actions for a signed-in user if needed
-            fetch("http://localhost:3000/signin")
-                .then(res => res.sendFile(__dirname + '/index.html'))
-        }
-        else {
-            // User is signed out
-            console.log('User is signed out.');
-            // Perform actions for a signed-out user if needed
-        }
-    });
+const username = document.querySelector(".username").value
+    const password = document.querySelector(".password").value
+    signInWithEmailAndPassword(auth, username, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log(true)
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(false)
+        });
 });
 
-//Sign user out
-import { signOut } from "firebase/auth";
+//Sign user out from the user
 
 const signOutButton = document.getElementById('signOutButton');
 
