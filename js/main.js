@@ -2,6 +2,7 @@ const cafeList = document.querySelector("#cafe-list")
 const userList = document.querySelector("#user-list")
 const submitButton = document.querySelector(".submit-button")
 
+
 const dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 function createCafeListElement(cafeObj){
@@ -27,12 +28,7 @@ function createCafeHoursElement(hours){
 
     returnArray.forEach((e)=>{
         liElement.innerHTML += e+"\n";
-
-
     });
-
-
-
 }
 
 
@@ -48,6 +44,7 @@ function fetchCafeData (){
     fetch("http://localhost:3000/cafes/search"+queryString)
     .then(response => response.json())
     .then(data => {
+        dataStore = data;
         const key = 'cafe_id'
         const unique = [...new Map(data.map(item =>
             [item[key], item])).values()];
@@ -66,6 +63,15 @@ function fetchCafeData (){
 
 }
 
+function getSearchValues(){
+    let params = new URL(document.location).searchParams;
+
+    return params;
+}
+let test = getSearchValues().get("cafename");
+console.log(test)
+
+
 fetchCafeData()
 
 fetch("http://localhost:3000/users"+queryString)
@@ -80,6 +86,8 @@ fetch("http://localhost:3000/users"+queryString)
 
 createCafeHoursElement()
 
+
 submitButton.addEventListener("click",()=>{
     fetchCafeData()
+
 })

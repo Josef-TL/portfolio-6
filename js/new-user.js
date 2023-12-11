@@ -183,12 +183,12 @@ signOutButton.addEventListener('click', function() {
 });
 }
 
-const user = auth.currentUser;
+const user = "";
 auth.onAuthStateChanged((user) => {
     if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        let uid = user.uid;
+        user = user.uid;
         // ...
         // 👈 This is where you can also query the database as the user for the first time
         console.log(uid)
