@@ -8,6 +8,9 @@
 </head>
 
 <body>
+
+<div class="navbar-container"></div>
+
 <main>
     <h1>Create New User</h1>
     <form>
@@ -46,6 +49,21 @@
     </form>
     <a href="index.html">Tryk her for at gå tilbage til main menu</a>
 </main>
+
+<script>
+    // Load the navigation bar dynamically from navbar.html
+    const navbarContainer = document.querySelector(".navbar-container");
+
+    // Use fetch to load the content of navbar.html
+    fetch("navbar.html")
+        .then((response) => response.text())
+        .then((html) => {
+            // Insert the content into the navbarContainer
+            navbarContainer.innerHTML = html;
+        })
+        .catch((error) => console.error("Error loading navigation bar:", error));
+</script>
+
 </body>
 <script src="Client/login.js"></script>
 </html>
