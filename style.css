@@ -4,12 +4,20 @@
     padding:0;
 }
 
+main {
+    max-width: 600px;
+    margin-top: 100px; /* Adjust the value based on the height of your navigation bar */
+}
+
+
+.nav
 ul {
     list-style: none;
 }
 
 #cafe-list {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .cafe-item {
@@ -35,7 +43,7 @@ body{
     align-items: center;
     height: 100vh;
     padding: 20px 0;
-    margin: 0;
+    margin-top: 80px; /* Added to make space for navbar */
     flex-direction: column;
 }
 
@@ -99,14 +107,13 @@ main {
 }
 /* Nav bar end */
 
-/* Add margin-top to create space for the navigation bar */
-.content {
-    margin-top: 80px; /* Adjust the value based on the height of your navigation bar */
-}
 
 .container {
+    display: flex;
+    justify-content: center;
     margin-bottom: 20px;
 }
+
 
 div {
     display: block
@@ -118,7 +125,7 @@ p {
     margin: 20px;
 }
 
-form, main {
+form {
     max-width: 330px;
     margin-top: 100px; /* Adjust the value based on the height of your navigation bar */
 }
@@ -209,4 +216,8 @@ button no. 9
 
 .favoritter h3 {
     text-align: center;
+}
+
+.cafe-hours {
+    font-size: small;
 }

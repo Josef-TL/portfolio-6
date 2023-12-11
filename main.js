@@ -4,48 +4,41 @@ const submitButton = document.querySelector(".submit-button")
 
 const dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
-function createCafeListElement(name,location,cost,noise,group,wifi,food,gluten,veg,pet){
+function createCafeListElement(cafeObj){
 
     const newElement = document.createElement("li");
-    newElement.classList.add("cafe-item")
-    newElement.innerHTML = `<h3>${name}</h3><div class="cafe-wrap"><div class="cafe-main"><p>Location: ${location}</p>
-    <p>Cost: ${cost}</p><p>Noise Level: ${noise}</p></div><div class="cafe-hours"></div></div>`
+    newElement.classList.add("cafe-item");
+    newElement.id = `cafe-element-${cafeObj.cafe_id}`
+    newElement.innerHTML = `<h3>${cafeObj.cafe_name}</h3><div class="cafe-wrap"><div class="cafe-main"><p>Location: ${cafeObj.location}</p>
+    <p>Cost: ${cafeObj.cost}</p><p>Noise Level: ${cafeObj.noise}</p></div><div class="cafe-hours"></div></div>`
     cafeList.appendChild(newElement)
 }
 function createCafeHoursElement(hours){
+    const newUl = document.createElement("ul")
 
-    const newElement = document.createElement("li");
-    newElement.classList.add("cafe-item")
-    newElement.innerHTML = `<h3>${name}</h3><div class="cafe-wrap"><div class="cafe-main"><p>Location: ${location}</p>
-    <p>Cost: ${cost}</p><p>Noise Level: ${noise}</p></div><div class="cafe-hours"></div></div>`
-    cafeList.appendChild(newElement)
-}
+    const returnArray = [];
 
-
-const queryString = window.location.search;
-
-/*
-function getBusinessHours (data){
-
-    const countTemp = data.map(()=>data.)
-
-    let returnArray = []
-
-    for (let i = 0; i < data.length; i++) {
-
-    }
-
-
-    data.push(data.shift())
-    data.forEach((e)=>{
+    hours.push(hours.shift());
+    hours.forEach((e)=>{
         returnArray.push(dayArray[e.day]+" "+e.open_time.slice(0,2)+"-"+e.close_time.slice(0,2));
     });
 
-    return returnArray;
+    const liElement = document.querySelector(`#cafe-element-${hours[0].cafe_id} .cafe-hours`);
+
+    returnArray.forEach((e)=>{
+        liElement.innerHTML += e+"\n";
+
+
+    });
+
+
 
 }
 
- */
+
+
+
+const queryString = window.location.search;
 
 
 
@@ -55,8 +48,19 @@ function fetchCafeData (){
     fetch("http://localhost:3000/cafes/search"+queryString)
     .then(response => response.json())
     .then(data => {
-        data.forEach(e => {
-            createCafeListElement(e.cafe_name,e.location,e.cost,e.noise,e.group,e.wifi,e.food,e.gluten,e.vegetarian,e.pet)
+        const key = 'cafe_id'
+        const unique = [...new Map(data.map(item =>
+            [item[key], item])).values()];
+
+
+        unique.forEach(e => {
+
+            const businessHours = data.filter((elem)=>elem.cafe_id === e.cafe_id);
+
+            createCafeListElement(e);
+            createCafeHoursElement(businessHours);
+
+
         });
     });
 
@@ -74,7 +78,7 @@ fetch("http://localhost:3000/users"+queryString)
         });
     });
 
-
+createCafeHoursElement()
 
 submitButton.addEventListener("click",()=>{
     fetchCafeData()

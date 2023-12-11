@@ -1,4 +1,4 @@
-    const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const db = require('mysql2');
 
@@ -12,7 +12,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"Buster42Kuller",
+    password:"c@_@*u-YGTKcxrc4Fp!6",
     database:"cafes"
 });
 
@@ -35,7 +35,7 @@ app.get('/cafes/search',(req,res)=>{
 
     if (req.query.cafename !== undefined) queryParameterName = req.query.cafename;
     if (req.query.cafecity !== undefined) queryParameterCity = req.query.cafecity;
-    const q = "SELECT * FROM cafes WHERE (cafe_name LIKE ?) AND (location LIKE ?)";
+    const q = "select *, business_hours.`day`, business_hours.open_time, business_hours.close_time from cafes inner join business_hours on cafes.cafe_id=business_hours.cafe_id WHERE (cafe_name LIKE ?) AND (location LIKE ?);";
 
     connection.query(q,[queryParameterName+"%",queryParameterCity+"%"], (error, results)=>{
         res.send(results);
