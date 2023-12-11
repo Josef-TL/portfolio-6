@@ -2,6 +2,7 @@
 const cors = require('cors');
 const db = require('mysql2');
 
+
 const app = express();
 const port = 3000;
 
@@ -56,6 +57,12 @@ app.get('/users',(req,res)=>{
 app.get('/cafes/id/:id',(req,res)=>{
     const queryParameter = req.params.id;
     connection.query(`SELECT * FROM cafes WHERE cafe_id = ?`,[queryParameter], (error, results)=>{
+        res.send(results);
+    })
+});
+
+app.get('/cafes/hours',(req,res)=>{
+    connection.query(`SELECT * FROM business_hours`, (error, results)=>{
         res.send(results);
     })
 });
