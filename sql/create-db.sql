@@ -32,7 +32,7 @@ create table business_hours (
 
 
 create table users (
-user_id int auto_increment,
+user_id varchar(60),
 user_name varchar(255) not null,
 first_name varchar(255),
 last_name varchar(255),
@@ -43,14 +43,14 @@ primary key (user_id)
 
 create table favorites (
 	cafe_id int,
-    user_id int,
+    user_id varchar(60),
     foreign key (cafe_id) references cafes(cafe_id),
     foreign key (user_id) references users(user_id)
 );
 
 
-insert into cafes(cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets) 
-values 
+insert into cafes(cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets)
+values
 ('minas','nørrebro','low',true,'middle',true,false,true,true,false),
 ('Study Brew','nørrebro','low',true,'low',true,true,false,true,false),
 ('Code Corner','Frederiksberg','middle',true,'middle',true,false,true,true,true),
@@ -127,19 +127,19 @@ values
 (9,4,080000,170000),
 (9,5,080000,170000),
 (9,6,100000,160000),
-(10,0,130000,150000),
-(10,1,100000,210000),
-(10,2,100000,210000),
-(10,3,100000,210000),
-(10,4,100000,210000),
-(10,5,100000,210000),
+(10,0,100000,160000),
+(10,1,080000,170000),
+(10,2,080000,170000),
+(10,3,080000,170000),
+(10,4,080000,170000),
+(10,5,080000,170000),
 (10,6,100000,160000);
 
 
-insert into users(user_name,first_name,last_name,email)
+insert into users(user_id,user_name,first_name,last_name,email)
 values
-('jtl','josef','tonnesen-lucas','jtl@email.com'),
-('jens','jens','nielsen','jens@email.com');
+('1','jtl','josef','tonnesen-lucas','jtl@email.com'),
+('2','jens','jens','nielsen','jens@email.com');
 
 insert into favorites(user_id, cafe_id)
 values (1,1);
