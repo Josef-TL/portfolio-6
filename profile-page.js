@@ -8,3 +8,5 @@ if (file) {
     reader.onload = function(e) {
         displayArea.style.backgroundImage = 'url(' + e.target.result + ')';
     }}})
+
+
