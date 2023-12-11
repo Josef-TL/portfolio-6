@@ -47,6 +47,38 @@ function getBusinessHours (data){
 
  */
 
+const addToFavoritesButtons = document.querySelectorAll(".add-to-favorites");
+
+addToFavoritesButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        const cafeId = event.target.parentElement.getAttribute("data-cafe-id");
+
+        // Make a POST request to your API to add the cafe to the user's favorites
+        fetch("http://localhost:3000/favorites/user_id", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: /* The user's ID */
+                cafe_id: cafeId,
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle success or error response
+                if (data.message === "Successful POST request") {
+                    // Optionally, you can provide user feedback that the cafe was added to favorites
+                    alert("Cafe added to favorites!");
+                } else {
+                    alert("Failed to add cafe to favorites. Please try again.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error adding cafe to favorites:", error);
+            });
+    });
+});
 
 
 // gets the search parameters https://www.sitepoint.com/get-url-parameters-with-javascript/
