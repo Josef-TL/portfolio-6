@@ -14,7 +14,7 @@ import { } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-SERVICE.js'
  */
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js'
 
 
@@ -34,9 +34,10 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 // Post new user to SQL server
-function sendNewUser(uName,fName,lName,email) {
+function sendNewUser(user_id,uName,fName,lName,email) {
 
     const jsonObjectToPost = {
+        user_id: user_id,
         uName:uName,
         fName:fName,
         lName:lName,
@@ -128,8 +129,10 @@ submitButtonUser.addEventListener("click", (event) => {
         createUserWithEmailAndPassword(auth, newUserEmail, password)
             .then((userCredential) => {
                 // User creation successful
-                const user = userCredential.user;
-                sendNewUser(newUsername, newUserFirstName, newUserLastName, newUserEmail);
+                const user = userCredential.user.uid;
+                console.log(user)
+                sendNewUser(user, newUsername, newUserFirstName, newUserLastName, newUserEmail);
+                // New HTML page
             })
             .catch((error) => {
                 // Handle any error during user creation
@@ -155,8 +158,6 @@ loginButton.addEventListener('click', function logIn() {
         .then((userCredential) => {
             // Signed in
             const user = userCredential.user;
-            console.log(true)
-
         }).then(()=>
         window.location.replace('index.html'))
         .catch((error) => {
@@ -187,7 +188,6 @@ const user = auth.currentUser;
 auth.onAuthStateChanged((user) => {
     if (user) {
         // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         let uid = user.uid;
         // ...
         // 👈 This is where you can also query the database as the user for the first time

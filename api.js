@@ -1,4 +1,4 @@
-const express = require('express');
+    const express = require('express');
 const cors = require('cors');
 const db = require('mysql2');
 
@@ -12,7 +12,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"c@_@*u-YGTKcxrc4Fp!6",
+    password:"Buster42Kuller",
     database:"cafes"
 });
 
@@ -98,18 +98,15 @@ app.post('/cafes/new',(req,res)=>{
 
 app.post('/users/new',(req,res)=>{
 
+    const user = req.body.user_id;
     const uName =  req.body.uName;
     const fName =  req.body.fName;
     const lName =  req.body.lName;
     const email =  req.body.email;
 
-console.log(uName)
-    console.log(fName)
-    console.log(lName)
-    console.log(email)
     // Dette er opgave A
-    connection.query('INSERT INTO users(user_name,first_name,last_name,email)  VALUES(?,?,?,?)',
-        [uName,fName,lName,email],
+    connection.query('INSERT INTO users(user_id,user_name,first_name,last_name,email)  VALUES(?,?,?,?,?)',
+        [user,uName,fName,lName,email],
         (error,result)=>{
             res.send("Successful POST request");
         });
