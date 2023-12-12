@@ -187,16 +187,33 @@ signOutButton.addEventListener('click', function() {
 const user = auth.currentUser;
 let uid = ""
 auth.onAuthStateChanged((user) => {
-    if (user) {
-        // User is signed in, see docs for a list of available properties
-        uid = user.uid;
-        // ...
-        // 👈 This is where you can also query the database as the user for the first time
+    const signUpLink = document.getElementById("signUpLink");
+    const loginLink = document.getElementById("loginLink");
+    const profileLink = document.getElementById("profileLink");
+    const signOutButton = document.getElementById("signOutButton");
 
-        console.log(uid);
+    if (user) {
+        // User is signed in
+        uid = user.uid;
+
+        // Hide Sign Up and Login links
+        signUpLink.style.display = "none";
+        loginLink.style.display = "none";
+
+        // Show Profile link and Sign Out button
+        profileLink.style.display = "block";
+        signOutButton.style.display = "block";
     } else {
         // User is signed out
         uid = 0;
+
+        // Show Sign Up and Login links
+        signUpLink.style.display = "block";
+        loginLink.style.display = "block";
+
+        // Hide Profile link and Sign Out button
+        profileLink.style.display = "none";
+        signOutButton.style.display = "none";
     }
 });
 
