@@ -2,7 +2,6 @@ const cafeList = document.querySelector("#cafe-list")
 const userList = document.querySelector("#user-list")
 const submitButton = document.querySelector(".submit-button")
 
-
 const dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 function createCafeListElement(cafeObj){
@@ -21,7 +20,6 @@ function createCafeListElement(cafeObj){
         <div class="cafe-item-hours"></div>`
     cafeList.appendChild(newElement)
 }
-
 function createCafeHoursElement(hours){
     const newUl = document.createElement("ul")
     const liElement = document.querySelector(`#cafe-element-${hours[0].cafe_id} .cafe-item-hours`);
@@ -57,7 +55,6 @@ function fetchCafeData (){
     fetch("http://localhost:3000/cafes/search"+queryString)
     .then(response => response.json())
     .then(data => {
-        dataStore = data;
         const key = 'cafe_id'
         const unique = [...new Map(data.map(item =>
             [item[key], item])).values()];
@@ -76,15 +73,6 @@ function fetchCafeData (){
 
 }
 
-function getSearchValues(){
-    let params = new URL(document.location).searchParams;
-
-    return params;
-}
-let test = getSearchValues().get("cafename");
-console.log(test)
-
-
 fetchCafeData()
 
 fetch("http://localhost:3000/users"+queryString)
@@ -99,7 +87,6 @@ fetch("http://localhost:3000/users"+queryString)
 
 createCafeHoursElement()
 
-
 submitButton.addEventListener("click",()=>{
     fetchCafeData()
 })
@@ -111,7 +98,8 @@ auth.onAuthStateChanged((user) => {
         let uid = user.uid;
         // ...
         // 👈 This is where you can also query the database as the user for the first time
-         if (addToFavoritesButtons) {
+         /*
+        if (addToFavoritesButtons) {
 
 
             addToFavoritesButtons.forEach((button) => {
@@ -129,7 +117,7 @@ auth.onAuthStateChanged((user) => {
                         },
                         body: JSON.stringify({
                             user_id: userId, // Use the user's UID
-                            /*cafe_id: cafe_id,*/
+                            /*cafe_id: cafe_id,
                         }),
                     })
                         .then((response) => response.json())
@@ -148,6 +136,7 @@ auth.onAuthStateChanged((user) => {
                 });
             });
         }
+        */
 
         console.log(uid);
     } else {
