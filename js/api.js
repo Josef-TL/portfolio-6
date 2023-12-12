@@ -33,13 +33,6 @@ app.get('/cafes/search',(req,res)=>{
     let queryParameterName = "";
     let queryParameterCity = "";
 
-    // queryString = window.location.search;
-    //?name=1&city=2
-
-    //{
-    //  "name": 1,
-    //  "city": 2
-    // }
     if (req.query.cafename !== undefined) queryParameterName = req.query.cafename;
     if (req.query.cafecity !== undefined) queryParameterCity = req.query.cafecity;
     const q = "select *, business_hours.`day`, business_hours.open_time, business_hours.close_time from cafes inner join business_hours on cafes.cafe_id=business_hours.cafe_id WHERE (cafe_name LIKE ?) AND (location LIKE ?);";
@@ -81,9 +74,9 @@ app.get('/users/id/:id',(req,res)=>{
     })
 });
 
-    app.post('/favorites/user_id', (req, res) => {
-        const user_id = req.body.user_id
-        const cafe_id = req.body.cafe_id
+    app.post('/favorites/new/:user_id', (req, res) => {
+        const user_id = req.body.id
+        const cafe_id = req.body.id
 
 connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
     [user_id, cafe_id],
@@ -128,6 +121,13 @@ app.post('/users/new',(req,res)=>{
             res.send("Successful POST request");
         });
 });
+    app.get("/favorits/:id", (req, res) => {
+        const uid = req.params.id;
+        connection.query("SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?",[uid] ,(error, results) => {
+            res.send(results)
+        })
+    })
+
 
 app.get('*',(req,res) =>{
     res.sendStatus(404);

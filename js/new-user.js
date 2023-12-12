@@ -185,6 +185,7 @@ signOutButton.addEventListener('click', function() {
 }
 
 const user = auth.currentUser;
+
 let uid = ""
 auth.onAuthStateChanged((user) => {
     const signUpLink = document.getElementById("signUpLink");
@@ -203,6 +204,7 @@ auth.onAuthStateChanged((user) => {
         // Show Profile link and Sign Out button
         profileLink.style.display = "block";
         signOutButton.style.display = "block";
+
     } else {
         // User is signed out
         uid = 0;
@@ -215,6 +217,7 @@ auth.onAuthStateChanged((user) => {
         profileLink.style.display = "none";
         signOutButton.style.display = "none";
     }
+
 });
 
 
