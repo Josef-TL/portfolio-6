@@ -11,14 +11,18 @@
 <div class="wholePage">
     <div class="userSection">
         <form action="upload.php" method="post" enctype="multipart/form-data">
-            <div id="photoDisplayArea" style="width: 75px; height: 75px; border: 1px solid black;"></div>
-            <h3>Username</h3>
-            <label for="profilePhoto">Upload Profile Photo:</label>
-            <input type="file" id="profilePhoto" name="profilePhoto">
-            <input type="submit" value="Upload">
+            <div id="photoDisplayArea" >
+            <img class="emptyIcon" src="https://media.istockphoto.com/id/1341046662/vector/picture-profile-icon-human-or-people-sign-and-symbol-for-template-design.jpg?s=612x612&w=0&k=20&c=A7z3OK0fElK3tFntKObma-3a7PyO8_2xxW0jtmjzT78=">
+            </div>
+            <h3 id="username">Username</h3>
+            <div id="uploadPhoto"><label for="profilePhoto">Upload Profile Photo:</label>
+                <input type="file" id="profilePhoto" name="profilePhoto">
+                <input type="submit" value="Upload">
+            </div>
         </form>
     </div>
 
+<div class="listPage">
     <div class="favoritter">
         <h3>Favoritter</h3>
         <ul>
@@ -27,6 +31,16 @@
             <li>Cafe3</li>
         </ul>
     </div>
+    <div class="addedCafes">
+        <h3>Added Cafes</h3>
+        <ul>
+            <li>Cafe 1</li>
+            <li>Cafe 2</li>
+            <li>Cafe3</li>
+        </ul>
+    </div>
+</div>
+
 </div>
 
 <script>
@@ -43,4 +57,5 @@
 
 </body>
 <script src="profile-page.js"></script>
+<script type="module" src="new-user.js"></script>
 </html>

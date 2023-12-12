@@ -92,7 +92,7 @@ auth.onAuthStateChanged((user) => {
         let uid = user.uid;
         // ...
         // 👈 This is where you can also query the database as the user for the first time
-        /* if (addToFavoritesButtons) {
+         if (addToFavoritesButtons) {
 
 
             addToFavoritesButtons.forEach((button) => {
@@ -110,7 +110,7 @@ auth.onAuthStateChanged((user) => {
                         },
                         body: JSON.stringify({
                             user_id: userId, // Use the user's UID
-                            cafe_id: cafeId,
+                            /*cafe_id: cafe_id,*/
                         }),
                     })
                         .then((response) => response.json())
@@ -130,7 +130,7 @@ auth.onAuthStateChanged((user) => {
             });
         }
 
-        console.log(uid); */
+        console.log(uid);
     } else {
         // User is signed out
         console.log("test2");
