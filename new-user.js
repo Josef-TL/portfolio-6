@@ -191,11 +191,45 @@ auth.onAuthStateChanged((user) => {
         let uid = user.uid;
         // ...
         // 👈 This is where you can also query the database as the user for the first time
-        console.log(uid)
+       addToFavoritesButtons.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                const cafeId = event.target.parentElement.getAttribute("data-cafe-id");
+
+                // Get the current user's UID
+                const userId = user.uid;
+
+                // Make a POST request to your API to add the cafe to the user's favorites
+                fetch("http://localhost:3000/favorites", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        user_id: userId, // Use the user's UID
+                        cafe_id: cafeId,
+                    }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Handle success or error response
+                        if (data.message === "Successful POST request") {
+                            // Optionally, you can provide user feedback that the cafe was added to favorites
+                            alert("Cafe added to favorites!");
+                        } else {
+                            alert("Failed to add cafe to favorites. Please try again.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error adding cafe to favorites:", error);
+                    });
+            });
+        });
+
+        console.log(uid);
     } else {
         // User is signed out
-        // ...
-        console.log("test2")
+        console.log("test2");
     }
 });
+
 

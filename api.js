@@ -74,6 +74,16 @@ app.get('/users/id/:id',(req,res)=>{
     })
 });
 
+    app.post('/favorites/user_id', (req, res) => {
+        const user_id = req.body.id
+        const cafe_id = req.body.id
+
+connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
+    [user_id, cafe_id],
+    (error, result) =>{
+    res.send("Successful POST request")
+    }
+    )})
 
 app.post('/cafes/new',(req,res)=>{
 
@@ -119,3 +129,20 @@ app.get('*',(req,res) =>{
 app.listen(port, ()=>{
     console.log("Hey guys we are officially LIVE !!!!");
 });
+
+app.get('/favorites/user_id/:id', (req, res) => {
+    const userId = req.parms.id;
+
+    connection.query(
+        'SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?'
+            [userId],
+        (error, results) => {
+            if (error) {
+                console.error("Error fetching user's favorite cafes:", error);
+                res.status(500).json([]);
+            } else {
+                res.status(200).json(results);
+            }
+        }
+    )
+})

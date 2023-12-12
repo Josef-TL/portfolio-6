@@ -40,6 +40,7 @@ function createCafeHoursElement(hours){
 
 const queryString = window.location.search;
 
+const addToFavoritesButtons = document.querySelectorAll(".add-to-favorites");
 
 
 // gets the search parameters https://www.sitepoint.com/get-url-parameters-with-javascript/
