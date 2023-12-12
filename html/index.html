@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
 
 </head>
 <body>
@@ -13,7 +17,7 @@
 
 <main>
     <h1>Cafe database</h1>
-    <div class="container">
+    <div class="form-container">
     <form action="">
         <div>
         <label for="cafe-search-name">Cafe Name</label>
@@ -23,19 +27,24 @@
         <label for="cafe-search-city">Cafe City</label>
         <input type="text" name="cafecity" id="cafe-search-city">
         </div>
+        <div>
+            <input type="radio" name="group" id="cafe-search-group">
+            <label for="cafe-search-group">Group</label>
+            <input type="radio" name="wifi" id="cafe-search-wifi">
+            <label for="cafe-search-wifi">wifi</label>
+            <input type="radio" name="veg" id="cafe-search-veg">
+            <label for="cafe-search-veg">veg</label>
+            <input type="radio" name="pet" id="cafe-search-pet">
+            <label for="cafe-search-pet">pet</label>
+
+
+
+
+        </div>
         <button type="submit" class="submit-button">Search City</button>
     </form>
     </div>
-    <div class="container">
-    <form action="">
-        <div>
-            <label for="user-search">Username</label>
-            <input type="text" name="username" id="user-search">
-        </div>
-
-        <button type="submit">Search Users</button>
-    </form>
-    </div>
+    <button id="test">hey</button>
 
     <div class="wrapper">
         <h2>List of Cafes</h2>
@@ -45,6 +54,28 @@
             <button class="addToFavorites">Star</button>
             </li>
         </ul>
+    </div>
+
+    <template data-user-template>
+        <div class="card">
+            <div class="header" data-header></div>
+            <div class="body" data-body></div>
+            <div class="tags" data-body></div>
+            <div class="hours" data-body></div>
+
+        </div>
+    </template>
+
+
+    <div class="form-container">
+        <form action="">
+            <div>
+                <label for="user-search">Username</label>
+                <input type="text" name="username" id="user-search">
+            </div>
+
+            <button type="submit">Search Users</button>
+        </form>
     </div>
 
     <div class="wrapper">
@@ -75,7 +106,7 @@
 </main>
 
 </body>
-<script src="main.js"></script>
-<script type="module" src="new-user.js"></script>
+<script src="../js/main.js"></script>
+<script type="module" src="../js/new-user.js"></script>
 </html>
 

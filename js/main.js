@@ -2,6 +2,7 @@ const cafeList = document.querySelector("#cafe-list")
 const userList = document.querySelector("#user-list")
 const submitButton = document.querySelector(".submit-button")
 
+
 const dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
 function createCafeListElement(cafeObj){
@@ -9,12 +10,21 @@ function createCafeListElement(cafeObj){
     const newElement = document.createElement("li");
     newElement.classList.add("cafe-item");
     newElement.id = `cafe-element-${cafeObj.cafe_id}`
-    newElement.innerHTML = `<h3>${cafeObj.cafe_name}</h3><div class="cafe-wrap"><div class="cafe-main"><p>Location: ${cafeObj.location}</p>
-    <p>Cost: ${cafeObj.cost}</p><p>Noise Level: ${cafeObj.noise}</p></div><div class="cafe-hours"></div></div>`
+    newElement.innerHTML =
+        `<div class="cafe-item-name">
+            ${cafeObj.cafe_name}
+        </div>
+        <div class="cafe-item-loc">
+            ${cafeObj.location}
+        </div>
+        <div class="cafe-item-tag">Test</div>
+        <div class="cafe-item-hours"></div>`
     cafeList.appendChild(newElement)
 }
+
 function createCafeHoursElement(hours){
     const newUl = document.createElement("ul")
+    const liElement = document.querySelector(`#cafe-element-${hours[0].cafe_id} .cafe-item-hours`);
 
     const returnArray = [];
 
@@ -23,16 +33,14 @@ function createCafeHoursElement(hours){
         returnArray.push(dayArray[e.day]+" "+e.open_time.slice(0,2)+"-"+e.close_time.slice(0,2));
     });
 
-    const liElement = document.querySelector(`#cafe-element-${hours[0].cafe_id} .cafe-hours`);
 
     returnArray.forEach((e)=>{
-        liElement.innerHTML += e+"\n";
-
-
+        const newLi = document.createElement("li")
+        newLi.innerText = e;
+        newUl.appendChild(newLi)
     });
 
-
-
+    liElement.appendChild(newUl)
 }
 
 
@@ -49,6 +57,7 @@ function fetchCafeData (){
     fetch("http://localhost:3000/cafes/search"+queryString)
     .then(response => response.json())
     .then(data => {
+        dataStore = data;
         const key = 'cafe_id'
         const unique = [...new Map(data.map(item =>
             [item[key], item])).values()];
@@ -67,6 +76,15 @@ function fetchCafeData (){
 
 }
 
+function getSearchValues(){
+    let params = new URL(document.location).searchParams;
+
+    return params;
+}
+let test = getSearchValues().get("cafename");
+console.log(test)
+
+
 fetchCafeData()
 
 fetch("http://localhost:3000/users"+queryString)
@@ -80,6 +98,7 @@ fetch("http://localhost:3000/users"+queryString)
     });
 
 createCafeHoursElement()
+
 
 submitButton.addEventListener("click",()=>{
     fetchCafeData()

@@ -1,0 +1,46 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto',serif;
+}
+
+.container {
+    display: block;
+    width: 500px;
+    padding: 0;
+    margin: 0;
+}
+
+.cafe-wrap {
+    display: grid;
+    width: 100%;
+    height: 250px;
+    border: 1px solid black;
+    background-color: white;
+    grid-template-areas:
+    "name hour"
+    "loc hour"
+    "tag hour";
+    grid-template-columns: 1fr 21%;
+    grid-template-rows: 50px 100px 1fr;
+}
+
+.cafe-wrap > .cafe-name {
+    grid-area: name;
+    background-color: blue;
+}
+
+.cafe-wrap > .cafe-loc {
+    background-color: red;
+    grid-area: loc;
+}
+
+.cafe-wrap > .cafe-tag {
+    grid-area: tag;
+    background-color: darkolivegreen;
+}
+
+.cafe-wrap > .cafe-hours {
+    grid-area: hour;
+    background-color: greenyellow;
+}
