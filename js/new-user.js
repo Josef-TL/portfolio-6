@@ -184,6 +184,31 @@ signOutButton.addEventListener('click', function() {
 });
 }
 
+function getUserFavorit (id){
+    fetch(`http://localhost:3000/favorits/`+id)
+        .then((response) => response.json())
+        .then((data) => {
+            // Handle the list of favorite cafes returned from the API
+            const favoritesList = document.querySelector(".favoritter ul");
+            favoritesList.innerHTML = ""; // Clear the list first
+
+            if (data.length > 0) {
+                data.forEach((favorite) => {
+                    const favoriteItem = document.createElement("li");
+                    favoriteItem.textContent = favorite.cafe_name; // Adjust this based on your cafe data structure
+                    favoritesList.appendChild(favoriteItem);
+                });
+            } else {
+                const noFavoritesItem = document.createElement("li");
+                noFavoritesItem.textContent = "No favorite cafes yet.";
+                favoritesList.appendChild(noFavoritesItem);
+            }
+        })
+        .catch((error) => {
+            console.error("", error);
+        });
+}
+
 const user = auth.currentUser;
 
 let uid = ""
@@ -204,6 +229,8 @@ auth.onAuthStateChanged((user) => {
         // Show Profile link and Sign Out button
         profileLink.style.display = "block";
         signOutButton.style.display = "block";
+
+        getUserFavorit(uid)
 
     } else {
         // User is signed out
