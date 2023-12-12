@@ -1,4 +1,4 @@
-document.querySelector("#profilePhoto").addEventListener('change', function(event) {
+/*document.querySelector("#profilePhoto").addEventListener('change', function(event) {
     document.querySelector("#photoDisplayArea");
 
 var file = event.target.files[0];
@@ -10,9 +10,11 @@ if (file) {
     }}})
 
 // Assuming you have a user_id variable with the user's ID
-const userId =
+*/
 
-fetch(`http://localhost:3000/favorites/user_id/${userId}`)
+const uid ="JN1dwLD6RCbdTRxEmqxEa7NXx703"
+
+fetch(`http://localhost:3000/favorits/`+ uid)
     .then((response) => response.json())
     .then((data) => {
         // Handle the list of favorite cafes returned from the API

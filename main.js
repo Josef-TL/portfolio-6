@@ -28,10 +28,7 @@ function createCafeHoursElement(hours){
     returnArray.forEach((e)=>{
         liElement.innerHTML += e+"\n";
 
-
     });
-
-
 
 }
 
