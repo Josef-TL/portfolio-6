@@ -14,6 +14,8 @@ if (file) {
 
 const uid ="JN1dwLD6RCbdTRxEmqxEa7NXx703"
 
+function getUserFavorit () {
+
 fetch(`http://localhost:3000/favorits/`+ uid)
     .then((response) => response.json())
     .then((data) => {
@@ -36,7 +38,7 @@ fetch(`http://localhost:3000/favorits/`+ uid)
     .catch((error) => {
         console.error("Error fetching user's favorite cafes:", error);
     });
-
+}
 auth.onAuthStateChanged((user) => {
     const signUpLink = document.getElementById("signUpLink");
     const loginLink = document.getElementById("loginLink");
