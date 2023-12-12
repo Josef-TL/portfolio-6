@@ -12,8 +12,8 @@ if (file) {
 // Assuming you have a user_id variable with the user's ID
 */
 
-const uid ="JN1dwLD6RCbdTRxEmqxEa7NXx703"
 
+/*
 function getUserFavorit () {
 
 fetch(`http://localhost:3000/favorits/`+ uid)
@@ -38,7 +38,9 @@ fetch(`http://localhost:3000/favorits/`+ uid)
     .catch((error) => {
         console.error("Error fetching user's favorite cafes:", error);
     });
-}
+} */
+
+/*
 auth.onAuthStateChanged((user) => {
     const signUpLink = document.getElementById("signUpLink");
     const loginLink = document.getElementById("loginLink");
@@ -63,4 +65,4 @@ auth.onAuthStateChanged((user) => {
         profileLink.style.display = "none";
         signOutButton.style.display = "none";
     }
-});
+}); */
