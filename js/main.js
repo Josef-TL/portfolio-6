@@ -10,8 +10,7 @@ function createCafeListElement(cafeObj){
     const newElement = document.createElement("li");
     newElement.classList.add("cafe-item");
     newElement.id = `cafe-element-${cafeObj.cafe_id}`
-    newElement.innerHTML = `<h3>${cafeObj.cafe_name}</h3><div class="cafe-wrap"><div class="cafe-main"><p>Location: ${cafeObj.location}</p>
-    <p>Cost: ${cafeObj.cost}</p><p>Noise Level: ${cafeObj.noise}</p></div><div class="cafe-hours"></div></div>`
+    newElement.innerHTML = `<h3>${cafeObj.cafe_name}</h3><div class="cafe-wrap"><div class="cafe-loc">Location: ${cafeObj.location}</div><div class="cafe-hours"></div></div>`
     cafeList.appendChild(newElement)
 }
 function createCafeHoursElement(hours){
