@@ -34,3 +34,29 @@ fetch(`http://localhost:3000/favorites/user_id/${userId}`)
     .catch((error) => {
         console.error("Error fetching user's favorite cafes:", error);
     });
+
+auth.onAuthStateChanged((user) => {
+    const signUpLink = document.getElementById("signUpLink");
+    const loginLink = document.getElementById("loginLink");
+    const profileLink = document.getElementById("profileLink");
+    const signOutButton = document.getElementById("signOutButton");
+
+    if (user) {
+        uid = user.uid;
+
+
+        signUpLink.style.display = "none";
+        loginLink.style.display = "none";
+
+        profileLink.style.display = "block";
+        signOutButton.style.display = "block";
+    } else {
+        uid = 0;
+
+        signUpLink.style.display = "block";
+        loginLink.style.display = "block";
+
+        profileLink.style.display = "none";
+        signOutButton.style.display = "none";
+    }
+});
