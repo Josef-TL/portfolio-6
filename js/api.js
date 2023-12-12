@@ -33,6 +33,13 @@ app.get('/cafes/search',(req,res)=>{
     let queryParameterName = "";
     let queryParameterCity = "";
 
+    // queryString = window.location.search;
+    //?name=1&city=2
+
+    //{
+    //  "name": 1,
+    //  "city": 2
+    // }
     if (req.query.cafename !== undefined) queryParameterName = req.query.cafename;
     if (req.query.cafecity !== undefined) queryParameterCity = req.query.cafecity;
     const q = "select *, business_hours.`day`, business_hours.open_time, business_hours.close_time from cafes inner join business_hours on cafes.cafe_id=business_hours.cafe_id WHERE (cafe_name LIKE ?) AND (location LIKE ?);";
