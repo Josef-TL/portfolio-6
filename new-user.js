@@ -185,16 +185,18 @@ signOutButton.addEventListener('click', function() {
 }
 
 const user = auth.currentUser;
+let uid = ""
 auth.onAuthStateChanged((user) => {
     if (user) {
         // User is signed in, see docs for a list of available properties
-        let uid = user.uid;
+        uid = user.uid;
         // ...
         // 👈 This is where you can also query the database as the user for the first time
+
         console.log(uid);
     } else {
         // User is signed out
-        console.log("test2");
+        uid = 0;
     }
 });
 
