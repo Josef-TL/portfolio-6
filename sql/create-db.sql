@@ -7,8 +7,18 @@ drop table if exists business_hours;
 drop table if exists users;
 drop table if exists favorites;
 
+create table users (
+user_id varchar(60),
+user_name varchar(255) not null,
+first_name varchar(255),
+last_name varchar(255),
+email varchar(255) unique,
+primary key (user_id)
+);
+
 create table cafes (
 cafe_id int auto_increment,
+user_id varchar(255),
 cafe_name varchar(255) NOT NULL,
 location varchar(255) NOT NULL,
 cost varchar(255),
@@ -19,7 +29,8 @@ food boolean,
 gluten boolean,
 vegetarian boolean,
 pets boolean,
-primary key (cafe_id)
+primary key (cafe_id),
+foreign key (user_id) references users(user_id)
 );
 
 create table business_hours (
@@ -28,16 +39,6 @@ create table business_hours (
     open_time time,
     close_time time,
     foreign key (cafe_id) references cafes(cafe_id)
-);
-
-
-create table users (
-user_id varchar(60),
-user_name varchar(255) not null,
-first_name varchar(255),
-last_name varchar(255),
-email varchar(255) unique,
-primary key (user_id)
 );
 
 
