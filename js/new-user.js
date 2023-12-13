@@ -210,7 +210,6 @@ function getUserFavorit (id){
 }
 
 const user = auth.currentUser;
-
 let uid = ""
 auth.onAuthStateChanged((user) => {
     const signUpLink = document.getElementById("signUpLink");
