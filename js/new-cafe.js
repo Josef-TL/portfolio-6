@@ -17,11 +17,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const user = auth.currentUser;
-function sendNewCafe(user_id,name,location,cost,noise,group,wifi,food,gluten,veg,pet) {
+function sendNewCafe(user_id, name,location,cost,noise,group,wifi,food,gluten,veg,pet) {
 
     const jsonObjectToPost = {
-        user_id:user_id,
+        user_id: user_id,
         cafe_name:name,
         location:location,
         cost: cost,
@@ -46,6 +45,9 @@ function sendNewCafe(user_id,name,location,cost,noise,group,wifi,food,gluten,veg
         .then(res => res.json())
         .then(res => console.log(res));
 }
+
+const user = auth.currentUser;
+
 let uid = ""
 auth.onAuthStateChanged((user) => {
     const signUpLink = document.getElementById("signUpLink");

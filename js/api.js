@@ -12,7 +12,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"Tipsbladet!1997",
+    password:"Buster42Kuller",
     database:"cafes"
 });
 
@@ -135,6 +135,37 @@ app.post('/users/new',(req,res)=>{
         })
     })
 
+    app.get('/favorites/user_id/:id', (req, res) => {
+        const userId = req.parms.id;
+
+        connection.query(
+            'SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?'
+                [userId],
+            (error, results) => {
+                if (error) {
+                    console.error("Error fetching user's favorite cafes:", error);
+                    res.status(500).json([]);
+                } else {
+                    res.status(200).json(results);
+                }
+            }
+        )
+    })
+
+    app.get('/cafes/username/:id', (req, res) => {
+        const userId = req.params.id;
+
+        connection.query(
+            'SELECT cafe_name from cafes WHERE user_id= ?', [userId], (error, results) => {
+                if (error) {
+                    console.error("Error fetching user's favorite cafes:", error);
+                    res.status(500).json([]);
+                } else {
+                    res.status(200).json(results);
+                }
+            }
+        )
+    })
 
 app.get('*',(req,res) =>{
     res.sendStatus(404);
@@ -143,20 +174,3 @@ app.get('*',(req,res) =>{
 app.listen(port, ()=>{
     console.log("Hey guys we are officially LIVE !!!!");
 });
-
-app.get('/favorites/user_id/:id', (req, res) => {
-    const userId = req.parms.id;
-
-    connection.query(
-        'SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?'
-            [userId],
-        (error, results) => {
-            if (error) {
-                console.error("Error fetching user's favorite cafes:", error);
-                res.status(500).json([]);
-            } else {
-                res.status(200).json(results);
-            }
-        }
-    )
-})
