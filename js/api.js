@@ -74,9 +74,9 @@ app.get('/users/id/:id',(req,res)=>{
     })
 });
 
-    app.post('/favorites/new/:user_id', (req, res) => {
-        const user_id = req.body.id
-        const cafe_id = req.body.id
+    app.post('/favorites/new/', (req, res) => {
+        const user_id = req.body.user_id
+        const cafe_id = req.body.cafe_id
 
 connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
     [user_id, cafe_id],

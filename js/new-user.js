@@ -230,6 +230,7 @@ auth.onAuthStateChanged((user) => {
         profileLink.style.display = "block";
         signOutButton.style.display = "block";
 
+
         getUserFavorit(uid)
 
     } else {
