@@ -117,6 +117,14 @@ if (addToFavoritesButtons) {
         if (user) {
             // User is signed in, see docs for a list of available properties
             let uid = user.uid;
+            let favStore;
+
+            fetch("http://localhost:3000/favorits/"+uid)
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(data)
+                })
+
             // ...
             // 👈 This is where you can also query the database as the user for the first time
             addToFavoritesButtons.forEach((button) => {
