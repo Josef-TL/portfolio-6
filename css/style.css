@@ -291,14 +291,6 @@ width:50px;
     height: 50px;
 }
 
-.petText {
-    margin-left:43px;
-}
-
-.wifiText {
-    margin-left:32px;
-}
-
 .firstOptions h1 {
     margin-bottom: 15px;
 }
@@ -338,6 +330,14 @@ width:50px;
     width:60px;
     height:45px;
     padding-left:3px;
+}
+
+.groupText, .wifiText {
+margin-bottom: 38px;
+}
+
+.glutenText, .vegetarianText {
+    margin-bottom: 28px;
 }
 
 
