@@ -230,7 +230,7 @@ button no. 9
     align-items: center;
     min-height: 100vh; /* Ensure the content occupies at least the full viewport height */
     margin-left: 285px;
-    margin-top: 5px;
+    margin-bottom: 250px;
 }
 
 .container {
@@ -241,7 +241,7 @@ button no. 9
     padding: 20px;
     width: 100%;
     margin-right:200px;
-
+margin-bottom: 450px;
 }
 
 
@@ -268,6 +268,7 @@ button no. 9
 
 .otherOptions {
     display:flex;
+    margin-top:55px;
 }
 
 .firstOptions {
@@ -275,6 +276,36 @@ button no. 9
     flex-direction: column;
 }
 
+#cafe-name, #cafe-location {
+    width: 250px;
+}
+
+.submit-button {
+    margin-right:50px;
+}
+
+.otherOptions input[type="checkbox"], .secondOtherOptions input[type="checkbox"] {
+width:50px;
+    height: 50px;
+}
+
+.petText {
+    margin-left:43px;
+}
+
+.wifiText {
+    margin-left:32px;
+}
+
+.firstOptions h1 {
+    margin-bottom: 15px;
+}
+
+.secondOtherOptions button {
+    text-align: center;
+    align-items: center;
+    margin-right:50px;
+}
 
 
 /* styling til profil side */
