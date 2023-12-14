@@ -162,6 +162,10 @@ if (addToFavoritesButtons) {
         } else {
             // User is signed out
             console.log("test2")
+            const d =  document.querySelectorAll(".add-to-favorites")
+            d.forEach((e)=>{
+                e.classList.add("disabled")
+            })
 
         }
     });

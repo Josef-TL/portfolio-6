@@ -52,8 +52,7 @@ app.get('/cafes/search',(req,res)=>{
     if (req.query.cafegluten !== undefined) queryParameterGluten = req.query.cafegluten;
     if (req.query.cafepet !== undefined) queryParameterPet= req.query.cafepet;
 
-    const q = "select *, business_hours.`day`, business_hours.open_time, business_hours.close_time from cafes " +
-        "inner join business_hours on cafes.cafe_id=business_hours.cafe_id " +
+    const q = "select * from cafes "+
         "WHERE (cafe_name LIKE ?) AND (location LIKE ?) AND (cost LIKE ?) AND (wifi LIKE ?) AND (noise LIKE ?)" +
         " AND (food LIKE ?) AND (`group` LIKE ?) AND (gluten LIKE ?) AND (vegetarian LIKE ?) AND (pets LIKE ?);";
 

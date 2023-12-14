@@ -480,3 +480,7 @@ margin-bottom: 38px;
     width: 15%;
     margin-bottom: 15px;
 }
+
+.disabled{
+    display: none;
+}
