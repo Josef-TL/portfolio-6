@@ -31,8 +31,8 @@ function sendNewCafe(user_id, name,location,cost,noise,group,wifi,food,gluten,ve
         gluten: gluten,
         veg:veg,
         pet:pet,
-        open:open,
-        close:close
+        open_time:open,
+        close_time:close
     }
 
     const fetchConfiguration = {
@@ -42,6 +42,7 @@ function sendNewCafe(user_id, name,location,cost,noise,group,wifi,food,gluten,ve
         },
         body: JSON.stringify(jsonObjectToPost)
     }
+
 
     fetch("http://localhost:3000/cafes/new", fetchConfiguration)
         .then(res => res.json())
@@ -85,9 +86,6 @@ auth.onAuthStateChanged((user) => {
             const newCafeOpen = document.querySelector("#cafeOpen-weekday").value
             const newCafeClose = document.querySelector("#cafeClosing-weekday").value
 
-            console.log(newCafeFood)
-            console.log(newCafeOpen)
-            console.log(newCafeClose)
 
             sendNewCafe(userLog,newCafeName,newCafeLocation,newCafeCost,newCafeNoise, newCafeGroup,newCafeWifi,newCafeFood,newCafeGluten,newCafeVeg,newCafePet,newCafeOpen,newCafeClose);
         });
