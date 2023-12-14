@@ -1,4 +1,7 @@
 /* styling til profil side */
+*{
+    font-family: 'Roboto',serif;
+}
 .wholePage {
     width: 100%;
     margin: 0;

@@ -1,5 +1,8 @@
 
 /* Nav bar start */
+* {
+    font-family: 'Roboto',serif;
+}
 .navTop {
     background-color: seagreen;
     overflow: hidden;

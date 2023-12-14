@@ -1,6 +1,9 @@
 /*
 https://www.sanwebe.com/2014/08/css-html-forms-designs
 */
+*{
+    font-family: 'Roboto',serif;
+}
 .form-container{
       max-width: 500px;
       padding: 10px 20px;
@@ -9,7 +12,6 @@ https://www.sanwebe.com/2014/08/css-html-forms-designs
       padding: 20px;
       background: #f4f7f8;
       border-radius: 8px;
-      font-family: Georgia, "Times New Roman", Times, serif;
     justify-items: center;
   }
 
