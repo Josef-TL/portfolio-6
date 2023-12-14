@@ -183,9 +183,29 @@ signOutButton.addEventListener('click', function() {
     });
 });
 }
+function getUsername (id){
+    fetch(`http://localhost:3000/profilpage/`+id)
+        .then((response) => response.json())
+        .then((data) => {
+            // Handle the username so it shows on the profile page
+            console.log(data)
+
+            const usernameElement = document.querySelector("#username")
+            //The retrieved data has a property named 'username'
+
+
+            // Update the .username element with the fetched username
+                usernameElement.innerHTML = data[0].user_name
+
+        })
+        .catch((error) => {
+            console.error("", error);
+        });
+}
+
 
 function getUserFavorit (id){
-    fetch(`http://localhost:3000/favorites/user_id/`+id)
+    fetch(`http://localhost:3000/favorits/`+id)
         .then((response) => response.json())
         .then((data) => {
             // Handle the list of favorite cafes returned from the API
@@ -255,9 +275,11 @@ auth.onAuthStateChanged((user) => {
         profileLink.style.display = "block";
         signOutButton.style.display = "block";
 
+
+
         getUserFavorit(uid)
         getUserAdded(uid)
-
+        getUsername(uid)
     } else {
         // User is signed out
         uid = 0;

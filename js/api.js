@@ -128,6 +128,12 @@ app.post('/users/new',(req,res)=>{
             res.send("Successful POST request");
         });
 });
+    app.get("/favorits/:id", (req, res) => {
+        const uid = req.params.id;
+        connection.query("SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?",[uid] ,(error, results) => {
+            res.send(results)
+        })
+    })
 
     app.get('/favorites/user_id/:id', (req, res) => {
         const userId = req.params.id;
@@ -161,7 +167,23 @@ app.post('/users/new',(req,res)=>{
         )
     })
 
-app.get('*',(req,res) =>{
+    app.get('/profilpage/:id', (req, res) => {
+        const userId = req.params.id;
+
+        connection.query(
+            'SELECT user_name from users WHERE user_id=?', [userId], (error, results) => {
+                if (error) {
+                    console.error("Error fetching user's username:", error);
+                    res.status(500).json([]);
+                } else {
+                    res.status(200).json(results);
+                }
+            }
+        )
+    })
+
+
+    app.get('*',(req,res) =>{
     res.sendStatus(404);
 });
 
