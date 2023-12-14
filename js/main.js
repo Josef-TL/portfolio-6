@@ -4,6 +4,12 @@ const submitButton = document.querySelector(".submit-button")
 
 const dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
 
+function createEmptyListElement() {
+    const newElement = document.createElement("li");
+    newElement.innerHTML = `<div> No Cafes found</div>`
+    cafeList.appendChild(newElement)
+}
+
 function createCafeListElement(cafeObj){
 
     const newElement = document.createElement("li");
@@ -18,13 +24,15 @@ function createCafeListElement(cafeObj){
         </div>
         <div class="cafe-item-tag">Test</div>
         <div class="cafe-item-hours"></div> 
-<button class="addToFavorites">Star</button>`
+    <button class="addToFavorites">Star</button>`
     cafeList.appendChild(newElement)
+
 }
 function createCafeHoursElement(hours){
     const newUl = document.createElement("ul")
+    newUl.classList.add("hours-list")
     const liElement = document.querySelector(`#cafe-element-${hours[0].cafe_id} .cafe-item-hours`);
-
+    newUl.innerHTML = `<h3>Opening Hours</h3>`
     const returnArray = [];
 
     hours.push(hours.shift());
@@ -35,6 +43,7 @@ function createCafeHoursElement(hours){
 
     returnArray.forEach((e)=>{
         const newLi = document.createElement("li")
+        newLi.classList.add("hours-list-item")
         newLi.innerText = e;
         newUl.appendChild(newLi)
     });
@@ -60,18 +69,17 @@ function fetchCafeData (){
         const unique = [...new Map(data.map(item =>
             [item[key], item])).values()];
 
-
-        unique.forEach(e => {
-
-            const businessHours = data.filter((elem)=>elem.cafe_id === e.cafe_id);
-
-            createCafeListElement(e);
-            createCafeHoursElement(businessHours);
-
-
-        });
+        if(unique.length !== 0){
+            unique.forEach(e => {
+                const businessHours = data.filter((elem)=>elem.cafe_id === e.cafe_id);
+                createCafeListElement(e);
+                createCafeHoursElement(businessHours);
+            });
+        }
+        else {
+            createEmptyListElement()
+        }
     });
-
 }
 
 fetchCafeData()
@@ -85,8 +93,6 @@ fetch("http://localhost:3000/users"+queryString)
             userList.appendChild(newElement);
         });
     });
-
-createCafeHoursElement()
 
 submitButton.addEventListener("click",()=>{
     fetchCafeData()
