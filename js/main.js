@@ -15,6 +15,7 @@ function createCafeListElement(cafeObj){
     const newElement = document.createElement("li");
     newElement.classList.add("cafe-item");
     newElement.id = `cafe-element-${cafeObj.cafe_id}`
+    newElement.dataset.cafeId = cafeObj.cafe_id;
     newElement.innerHTML =
         `<div class="cafe-item-name">
             ${cafeObj.cafe_name}
@@ -24,7 +25,7 @@ function createCafeListElement(cafeObj){
         </div>
         <div class="cafe-item-tag">Test</div>
         <div class="cafe-item-hours"></div> 
-    <button class="addToFavorites">Star</button>`
+    <button class="add-to-favorites">Star</button>`
     cafeList.appendChild(newElement)
 
 }
@@ -56,30 +57,29 @@ function createCafeHoursElement(hours){
 
 const queryString = window.location.search;
 
-const addToFavoritesButtons = document.querySelectorAll(".add-to-favorites");
 
 
 // gets the search parameters https://www.sitepoint.com/get-url-parameters-with-javascript/
 function fetchCafeData (){
     const queryString = window.location.search;
     fetch("http://localhost:3000/cafes/search"+queryString)
-    .then(response => response.json())
-    .then(data => {
-        const key = 'cafe_id'
-        const unique = [...new Map(data.map(item =>
-            [item[key], item])).values()];
+        .then(response => response.json())
+        .then(data => {
+            const key = 'cafe_id'
+            const unique = [...new Map(data.map(item =>
+                [item[key], item])).values()];
 
-        if(unique.length !== 0){
-            unique.forEach(e => {
-                const businessHours = data.filter((elem)=>elem.cafe_id === e.cafe_id);
-                createCafeListElement(e);
-                createCafeHoursElement(businessHours);
-            });
-        }
-        else {
-            createEmptyListElement()
-        }
-    });
+            if(unique.length !== 0){
+                unique.forEach(e => {
+                    const businessHours = data.filter((elem)=>elem.cafe_id === e.cafe_id);
+                    createCafeListElement(e);
+                    createCafeHoursElement(businessHours);
+                });
+            }
+            else {
+                createEmptyListElement()
+            }
+        });
 }
 
 fetchCafeData()
@@ -98,6 +98,9 @@ submitButton.addEventListener("click",()=>{
     fetchCafeData()
 })
 
+
+/*
+if (addToFavoritesButtons) {
 const user = auth.currentUser;
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -105,8 +108,6 @@ auth.onAuthStateChanged((user) => {
         let uid = user.uid;
         // ...
         // 👈 This is where you can also query the database as the user for the first time
-         /*
-        if (addToFavoritesButtons) {
 
 
             addToFavoritesButtons.forEach((button) => {
@@ -124,7 +125,7 @@ auth.onAuthStateChanged((user) => {
                         },
                         body: JSON.stringify({
                             user_id: userId, // Use the user's UID
-                            /*cafe_id: cafe_id,
+                            cafe_id: cafe_id,
                         }),
                     })
                         .then((response) => response.json())
@@ -142,12 +143,13 @@ auth.onAuthStateChanged((user) => {
                         });
                 });
             });
-        }
-        */
 
-        console.log(uid);
-    } else {
-        // User is signed out
-        console.log("test2");
+            console.log(uid);
+
     }
-});
+})
+} else {
+            // User is signed out
+            console.log("test2");
+        }
+ */

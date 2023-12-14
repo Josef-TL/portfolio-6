@@ -110,6 +110,58 @@ function validateForm() {
     return isValid;
 }
 
+const addToFavoritesButtons = document.querySelectorAll(".add-to-favorites");
+
+if (addToFavoritesButtons) {
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            let uid = user.uid;
+            // ...
+            // 👈 This is where you can also query the database as the user for the first time
+            addToFavoritesButtons.forEach((button) => {
+                // IF parent element id IN favorites
+                const cafeId = button.parentElement.getAttribute("data-cafe-id");
+
+                button.addEventListener("click", (event) => {
+
+                    // Get the current user's UID
+                    const userId = user.uid;
+
+                    // Make a POST request to your API to add the cafe to the user's favorites
+                    fetch("http://localhost:3000/favorites/new/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            user_id: userId, // Use the user's UID
+                            cafe_id: cafeId,
+                        }),
+                    })
+                    .then((res) => {
+                        if(res.ok) {
+                            return  res.ok
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error adding cafe to favorites:", error);
+                    });
+
+
+                });
+            });
+
+        } else {
+            // User is signed out
+            console.log("test2")
+
+        }
+    });
+}
+
+
+
 // Add an event listener to the submitButtonUser button
 if(submitButtonUser){
 submitButtonUser.addEventListener("click", (event) => {
@@ -130,7 +182,6 @@ submitButtonUser.addEventListener("click", (event) => {
             .then((userCredential) => {
                 // User creation successful
                 const user = userCredential.user.uid;
-                console.log(user)
                 sendNewUser(user, newUsername, newUserFirstName, newUserLastName, newUserEmail);
                 // New HTML page
             })
@@ -167,6 +218,7 @@ loginButton.addEventListener('click', function logIn() {
         });
 });
 }
+
 //Sign user out from the user
 
 const signOutButton = document.getElementById('signOutButton');
@@ -183,8 +235,8 @@ signOutButton.addEventListener('click', function() {
     });
 });
 }
-
 function getUserFavorit (id){
+
     fetch(`http://localhost:3000/favorits/`+id)
         .then((response) => response.json())
         .then((data) => {
@@ -205,8 +257,9 @@ function getUserFavorit (id){
             }
         })
         .catch((error) => {
-            console.error("", error);
+            console.error("bruv", error);
         });
+
 }
 
 function getUserAdded (id){
@@ -236,42 +289,46 @@ function getUserAdded (id){
 
 const user = auth.currentUser;
 let uid = ""
-auth.onAuthStateChanged((user) => {
-    const signUpLink = document.getElementById("signUpLink");
-    const loginLink = document.getElementById("loginLink");
-    const profileLink = document.getElementById("profileLink");
-    const signOutButton = document.getElementById("signOutButton");
+function ifCurrentUser(){
+    auth.onAuthStateChanged((user) => {
+        const signUpLink = document.getElementById("signUpLink");
+        const loginLink = document.getElementById("loginLink");
+        const profileLink = document.getElementById("profileLink");
+        const signOutButton = document.getElementById("signOutButton");
 
-    if (user) {
-        // User is signed in
-        uid = user.uid;
-        console.log(uid)
+        if (user) {
+            // User is signed in
+            uid = user.uid;
 
-        // Hide Sign Up and Login links
-        signUpLink.style.display = "none";
-        loginLink.style.display = "none";
+            // Hide Sign Up and Login links
+            signUpLink.style.display = "none";
+            loginLink.style.display = "none";
 
-        // Show Profile link and Sign Out button
-        profileLink.style.display = "block";
-        signOutButton.style.display = "block";
+            // Show Profile link and Sign Out button
+            profileLink.style.display = "block";
+            signOutButton.style.display = "block";
 
+            if(window.location.pathname.includes("profile-page")){
+                getUserFavorit(uid)
+                getUserAdded(uid)
+            }
 
-        getUserFavorit(uid)
-        getUserAdded(uid)
+        } else {
+            // User is signed out
+            uid = 0;
 
-    } else {
-        // User is signed out
-        uid = 0;
+            // Show Sign Up and Login links
+            signUpLink.style.display = "block";
+            loginLink.style.display = "block";
 
-        // Show Sign Up and Login links
-        signUpLink.style.display = "block";
-        loginLink.style.display = "block";
+            // Hide Profile link and Sign Out button
+            profileLink.style.display = "none";
+            signOutButton.style.display = "none";
+        }
+    });
+}
 
-        // Hide Profile link and Sign Out button
-        profileLink.style.display = "none";
-        signOutButton.style.display = "none";
-    }
+ifCurrentUser();
 
-});
 
 
