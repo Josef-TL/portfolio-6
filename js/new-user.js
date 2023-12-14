@@ -209,8 +209,32 @@ function getUserFavorit (id){
         });
 }
 
-const user = auth.currentUser;
+function getUserAdded (id){
+    fetch(`http://localhost:3000/cafes/username/`+id)
+        .then((response) => response.json())
+        .then((data) => {
+            // Handle the list of favorite cafes returned from the API
+            const addedList = document.querySelector(".addedCafes ul");
+            addedList.innerHTML = ""; // Clear the list first
 
+            if (data.length > 0) {
+                data.forEach((added) => {
+                    const addedCafe = document.createElement("li");
+                    addedCafe.textContent = added.cafe_name; // Adjust this based on your cafe data structure
+                    addedList.appendChild(addedCafe);
+                });
+            } else {
+                const noAddedCafe = document.createElement("li");
+                noAddedCafe.textContent = "No favorite cafes yet.";
+                addedList.appendChild(noAddedCafe);
+            }
+        })
+        .catch((error) => {
+            console.error("", error);
+        });
+}
+
+const user = auth.currentUser;
 let uid = ""
 auth.onAuthStateChanged((user) => {
     const signUpLink = document.getElementById("signUpLink");
@@ -221,6 +245,7 @@ auth.onAuthStateChanged((user) => {
     if (user) {
         // User is signed in
         uid = user.uid;
+        console.log(uid)
 
         // Hide Sign Up and Login links
         signUpLink.style.display = "none";
@@ -232,6 +257,7 @@ auth.onAuthStateChanged((user) => {
 
 
         getUserFavorit(uid)
+        getUserAdded(uid)
 
     } else {
         // User is signed out
