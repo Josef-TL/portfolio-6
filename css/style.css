@@ -334,8 +334,10 @@ width:50px;
     margin-right:125px;
 }
 
-.allOptions input[type="option"] {
-    width:15%
+.allOptions select {
+    width:60px;
+    height:45px;
+    padding-left:3px;
 }
 
 
