@@ -228,7 +228,7 @@ margin-bottom: 450px;
     padding: 20px; /* Add some padding to the div */
     align-items: center; /* Center the content vertically */
     flex-direction: column;
-    margin-top:250px;
+    margin-top:120px;
 }
 
 .otherOptions {
@@ -252,14 +252,6 @@ margin-bottom: 450px;
 .otherOptions input[type="checkbox"], .secondOtherOptions input[type="checkbox"] {
 width:50px;
     height: 50px;
-}
-
-.petText {
-    margin-left:43px;
-}
-
-.wifiText {
-    margin-left:32px;
 }
 
 .firstOptions h1 {
@@ -297,8 +289,18 @@ width:50px;
     margin-right:125px;
 }
 
-.allOptions input[type="option"] {
-    width:15%
+.allOptions select {
+    width:60px;
+    height:45px;
+    padding-left:3px;
+}
+
+.groupText, .wifiText {
+margin-bottom: 38px;
+}
+
+.glutenText, .vegetarianText {
+    margin-bottom: 28px;
 }
 
 

@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-function sendNewCafe(user_id, name,location,cost,noise,group,wifi,food,gluten,veg,pet) {
+function sendNewCafe(user_id, name,location,cost,noise,group,wifi,food,gluten,veg,pet,open,close) {
 
     const jsonObjectToPost = {
         user_id: user_id,
@@ -31,6 +31,8 @@ function sendNewCafe(user_id, name,location,cost,noise,group,wifi,food,gluten,ve
         gluten: gluten,
         veg:veg,
         pet:pet,
+        open_time:open,
+        close_time:close
     }
 
     const fetchConfiguration = {
@@ -80,10 +82,11 @@ auth.onAuthStateChanged((user) => {
             const newCafeGluten = document.querySelector("#cafe-gluten").checked;
             const newCafeVeg = document.querySelector("#cafe-veg").checked;
             const newCafePet = document.querySelector("#cafe-pets").checked;
+            const newCafeOpen = document.querySelector("#cafeOpen-weekday").value
+            const newCafeClose = document.querySelector("#cafeClosing-weekday").value
 
-            console.log(newCafeFood)
 
-            sendNewCafe(userLog,newCafeName,newCafeLocation,newCafeCost,newCafeNoise, newCafeGroup,newCafeWifi,newCafeFood,newCafeGluten,newCafeVeg,newCafePet);
+            sendNewCafe(userLog,newCafeName,newCafeLocation,newCafeCost,newCafeNoise, newCafeGroup,newCafeWifi,newCafeFood,newCafeGluten,newCafeVeg,newCafePet,newCafeOpen,newCafeClose);
         });
 
 

@@ -107,32 +107,35 @@ app.post('/favorites/new/', (req, res) => {
         }
     )})
 
-app.post('/cafes/new', (req, res) => {
-    const user = req.body.user_id;
-    const name = req.body.cafe_name;
-    const loc = req.body.location;
-    const cost = req.body.cost;
-    const wifi = req.body.wifi;
-    const noise = req.body.noise;
-    const food = req.body.food;
-    const group = req.body.group;
-    const gluten = req.body.gluten;
-    const veg = req.body.veg;
-    const pet = req.body.pet;
+    app.post('/cafes/new', (req, res) => {
+        const user = req.body.user_id;
+        const name = req.body.cafe_name;
+        const loc = req.body.location;
+        const cost = req.body.cost;
+        const wifi = req.body.wifi;
+        const noise = req.body.noise;
+        const food = req.body.food;
+        const group = req.body.group;
+        const gluten = req.body.gluten;
+        const veg = req.body.veg;
+        const pet = req.body.pet;
+        const open = req.body.open_time
+        const close =req.body.close_time
 
-    connection.query(
-        'INSERT INTO cafes(user_id, cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [user, name, loc, cost, wifi, noise, food, group, gluten, veg, pet],
-        (error, result) => {
-            if (error) {
-                console.error('Error inserting data into the database:', error);
-                res.status(500).send("Internal Server Error");
-            } else {
-                res.status(201).send("Successful POST request");
+        connection.query(
+            'INSERT INTO cafes(user_id, cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets,open_time,close_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)',
+            [user, name, loc, cost, wifi, noise, food, group, gluten, veg, pet,open,close],
+            (error, result) => {
+                if (error) {
+                    console.error('Error inserting data into the database:', error);
+                    res.status(500).send("Internal Server Error");
+                } else {
+                    res.status(201).send("Successful POST request");
+                }
             }
-        }
-    );
-});
+        );
+
+    });
 
 
 app.post('/users/new',(req,res)=>{
