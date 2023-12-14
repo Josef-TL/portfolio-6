@@ -14,6 +14,7 @@
     <form class="formNewCafe">
         <div class="container">
         <div class="allOptions">
+            <div class="firstAndSecond">
             <div class="firstOptions">
                 <h1>Create New Cafe</h1>
                 <div class="form-div">
@@ -74,9 +75,11 @@
             </div>
         </div>
             </div>
+            </div>
+            <div class="lastPart">
             <div class="lastOption">
                 <div class="form-div">
-                    <label for="cafeOpen-weekday">Opening hours weekdays</label>
+                    <label class="openWeekday" for="cafeOpen-weekday">Opening hours weekdays</label>
                     <select name="openingWeekdays" id="cafeOpen-weekday">
                         <option value="07:00">07:00</option>
                         <option value="08:00">08:00</option>
@@ -85,16 +88,18 @@
                 </div>
 
                 <div class="form-div">
-                    <label for="cafeClosing-weekday">Opening hours weekdays</label>
+                    <label class="closingWeekday" for="cafeClosing-weekday">Opening hours weekdays</label>
                     <select name="closingWeekday" id="cafeClosing-weekday">
                         <option value="15:00">15:00</option>
                         <option value="16:00">16:00</option>
                         <option value="17:00">17:00</option>
                     </select>
                 </div>
+                </div>
+
                 <div class="lastOptionTwo">
                     <div class="form-div">
-                        <label for="cafeOpening-weekend">Opening hours weekdays</label>
+                        <label class="openingWeekend" for="cafeOpening-weekend">Opening hours weekdays</label>
                         <select name="openingWeekend" id="cafeOpening-weekend">
                             <option value="9:00">9:00</option>
                             <option value="10:00">10:00</option>
@@ -103,7 +108,7 @@
                     </div>
 
                     <div class="form-div">
-                        <label for="cafeClosing-weekend">Opening hours weekdays</label>
+                        <label class="closingWeekend" for="cafeClosing-weekend">Opening hours weekdays</label>
                         <select name="closingWeekend" id="cafeClosing-weekend">
                             <option value="14:00">14:00</option>
                             <option value="15:00">15:00</option>
@@ -111,11 +116,12 @@
                         </select>
                     </div>
             <div>
+            </div>
+                </div>
+            </div>
+            <div class="buttonSubmit">
                 <button type="button" class="submit-button" id="cafe-button">Submit</button>
             </div>
-        </div>
-
-    </div>
         </div>
         </div>
     </form>

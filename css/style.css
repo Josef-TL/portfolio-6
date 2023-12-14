@@ -263,6 +263,8 @@ margin-bottom: 450px;
     margin: 0 auto; /* Center the div horizontally */
     padding: 20px; /* Add some padding to the div */
     align-items: center; /* Center the content vertically */
+    flex-direction: column;
+    margin-top:250px;
 }
 
 .otherOptions {
@@ -306,9 +308,33 @@ width:50px;
     margin-right:50px;
 }
 
+.otherOptions, .firstOptions {
+    flex:1;
+}
+
 .lastOption {
     display:flex;
     flex-direction: column;
+    flex:1;
+}
+
+.firstAndSecond {
+    display:flex;
+}
+
+.lastPart {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.closingWeekday, .closingWeekend, .openingWeekend, .openWeekday {
+    margin-right:125px;
+}
+
+.allOptions input[type="option"] {
+    width:15%
 }
 
 
