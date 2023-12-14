@@ -185,7 +185,7 @@ signOutButton.addEventListener('click', function() {
 }
 
 function getUserFavorit (id){
-    fetch(`http://localhost:3000/favorits/`+id)
+    fetch(`http://localhost:3000/favorites/user_id/`+id)
         .then((response) => response.json())
         .then((data) => {
             // Handle the list of favorite cafes returned from the API

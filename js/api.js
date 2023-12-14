@@ -12,7 +12,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"Buster42Kuller",
+    password:"Tipsbladet!1997",
     database:"cafes"
 });
 
@@ -128,15 +128,9 @@ app.post('/users/new',(req,res)=>{
             res.send("Successful POST request");
         });
 });
-    app.get("/favorits/:id", (req, res) => {
-        const uid = req.params.id;
-        connection.query("SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?",[uid] ,(error, results) => {
-            res.send(results)
-        })
-    })
 
     app.get('/favorites/user_id/:id', (req, res) => {
-        const userId = req.parms.id;
+        const userId = req.params.id;
 
         connection.query(
             'SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?'
