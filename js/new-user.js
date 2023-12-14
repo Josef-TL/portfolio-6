@@ -115,18 +115,25 @@ const addToFavoritesButtons = document.querySelectorAll(".add-to-favorites");
 if (addToFavoritesButtons) {
     auth.onAuthStateChanged((user) => {
         if (user) {
-            // User is signed in, see docs for a list of available properties
             let uid = user.uid;
-            // ...
-            // 👈 This is where you can also query the database as the user for the first time
+            let favStore = [];
+
+            fetch("http://localhost:3000/favorits/"+uid)
+                .then(res=>res.json())
+                .then(data=>{
+                    data.forEach((e)=>{
+                        favStore.push(e.cafe_id)
+                    })
+                    console.log(favStore)
+                })
+
             addToFavoritesButtons.forEach((button) => {
                 // IF parent element id IN favorites
                 const cafeId = button.parentElement.getAttribute("data-cafe-id");
 
-                button.addEventListener("click", (event) => {
 
-                    // Get the current user's UID
-                    const userId = user.uid;
+                button.addEventListener("click", (event) => {
+                    const userID = user.uid
 
                     // Make a POST request to your API to add the cafe to the user's favorites
                     fetch("http://localhost:3000/favorites/new/", {
@@ -135,7 +142,7 @@ if (addToFavoritesButtons) {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            user_id: userId, // Use the user's UID
+                            user_id: userID, // Use the user's UID
                             cafe_id: cafeId,
                         }),
                     })
