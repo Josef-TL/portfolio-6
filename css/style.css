@@ -330,6 +330,14 @@ width:50px;
     justify-content: center;
 }
 
+.closingWeekday, .closingWeekend, .openingWeekend, .openWeekday {
+    margin-right:125px;
+}
+
+.allOptions input[type="option"] {
+    width:15%
+}
+
 
 /* styling til profil side */
 #photoDisplayArea {
