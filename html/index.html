@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/form.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
 </head>
@@ -16,9 +17,9 @@
 <div class="navbar-container"></div>
 
 <main>
-    <h1>Cafe database</h1>
+    <h1 id="title">Cafe Database Search</h1>
     <div class="form-container">
-    <form action="">
+        <form action="">
         <div>
         <label for="cafe-search-name">Cafe Name</label>
         <input type="text" name="cafename" id="cafe-search-name">
@@ -27,40 +28,64 @@
         <label for="cafe-search-city">Cafe City</label>
         <input type="text" name="cafecity" id="cafe-search-city">
         </div>
-        <div>
-            <input type="radio" name="group" id="cafe-search-group">
-            <label for="cafe-search-group">Group</label>
-            <input type="radio" name="wifi" id="cafe-search-wifi">
-            <label for="cafe-search-wifi">wifi</label>
-            <input type="radio" name="veg" id="cafe-search-veg">
-            <label for="cafe-search-veg">veg</label>
-            <input type="radio" name="pet" id="cafe-search-pet">
-            <label for="cafe-search-pet">pet</label>
+        <h2>Available tags</h2>
+        <div id="form-tag-wrapper">
 
-
-
-
+            <div>
+                <input value="false" type="radio" name="cafegroup" id="cafe-search-group">
+                <label for="cafe-search-group">Group</label>
+            </div>
+            <div>
+                <input value="false" type="radio" name="cafewifi" id="cafe-search-wifi">
+                <label for="cafe-search-wifi">wifi</label>
+            </div>
+            <div>
+                <input value="false" type="radio" name="cafeveg" id="cafe-search-veg">
+                <label for="cafe-search-veg">veg</label>
+            </div>
+            <div>
+                <input value="false" type="radio" name="cafepet" id="cafe-search-pet">
+                <label for="cafe-search-pet">pet</label>
+            </div>
+            <div>
+                <input value="false" type="radio" name="cafefood" id="cafe-search-food">
+                <label for="cafe-search-food">food</label>
+            </div>
+            <div>
+                <input value="false" type="radio" name="cafegluten" id="cafe-search-gluten">
+                <label for="cafe-search-gluten">gluten</label>
+            </div>
         </div>
+            <div id="form-dropdown-wrapper">
+                <div>
+                <label for="cafe-search-cost">Cafe Cost</label>
+                <select name="cafecost" id="cafe-search-cost">
+                    <option selected value> No Preference  </option>
+                    <option value="Low">Low</option>
+                    <option value="Middle">Middle</option>
+                    <option value="High">High</option>
+                </select>
+                </div>
+                <div>
+                <label for="cafe-search-noise">Cafe Noise</label>
+                <select name="cafenoise" id="cafe-search-noise">
+                    <option selected value> No Preference </option>
+                    <option value="Low">Low</option>
+                    <option value="Middle">Middle</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            </div>
+
         <button type="submit" class="submit-button">Search City</button>
     </form>
     </div>
-    <button id="test">hey</button>
 
     <div class="wrapper">
         <h2>List of Cafes</h2>
         <ul id="cafe-list">
         </ul>
     </div>
-
-    <template data-user-template>
-        <div class="card">
-            <div class="header" data-header></div>
-            <div class="body" data-body></div>
-            <div class="tags" data-body></div>
-            <div class="hours" data-body></div>
-
-        </div>
-    </template>
 
 
     <div class="form-container">

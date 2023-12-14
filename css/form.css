@@ -10,6 +10,7 @@ https://www.sanwebe.com/2014/08/css-html-forms-designs
       background: #f4f7f8;
       border-radius: 8px;
       font-family: Georgia, "Times New Roman", Times, serif;
+    justify-items: center;
   }
 
 .form-container fieldset{
@@ -63,5 +64,24 @@ https://www.sanwebe.com/2014/08/css-html-forms-designs
 .form-container select{
     height:35px;
 }
+
+#form-tag-wrapper {
+    display:grid;
+    grid-template-rows: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+#form-dropdown-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+#form-dropdown-wrapper > div{
+    width: 40%;
+ }
+.form-container h2 {
+    margin: 20px 0;
+    padding: 6px;
+}
+
 
 

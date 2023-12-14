@@ -1,4 +1,4 @@
-    const express = require('express');
+const express = require('express');
 const cors = require('cors');
 const db = require('mysql2');
 
@@ -12,7 +12,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"Buster42Kuller",
+    password:"Tipsbladet!1997",
     database:"cafes"
 });
 
@@ -32,12 +32,34 @@ app.get('/cafes',(req,res)=>{
 app.get('/cafes/search',(req,res)=>{
     let queryParameterName = "";
     let queryParameterCity = "";
+    let queryParameterCost = "";
+    let queryParameterGroup = "";
+    let queryParameterNoise = "";
+    let queryParameterFood = "";
+    let queryParameterWifi = "";
+    let queryParameterVeg = "";
+    let queryParameterGluten = "";
+    let queryParameterPet = "";
 
     if (req.query.cafename !== undefined) queryParameterName = req.query.cafename;
     if (req.query.cafecity !== undefined) queryParameterCity = req.query.cafecity;
-    const q = "select *, business_hours.`day`, business_hours.open_time, business_hours.close_time from cafes inner join business_hours on cafes.cafe_id=business_hours.cafe_id WHERE (cafe_name LIKE ?) AND (location LIKE ?);";
+    if (req.query.cafegroup !== undefined) queryParameterGroup = req.query.cafegroup;
+    if (req.query.cafecost !== undefined) queryParameterCost = req.query.cafecost;
+    if (req.query.cafenoise !== undefined) queryParameterNoise = req.query.cafenoise;
+    if (req.query.cafefood !== undefined) queryParameterFood = req.query.cafefood;
+    if (req.query.cafewifi !== undefined) queryParameterWifi = req.query.cafewifi;
+    if (req.query.cafeveg !== undefined) queryParameterVeg = req.query.cafeveg;
+    if (req.query.cafegluten !== undefined) queryParameterGluten = req.query.cafegluten;
+    if (req.query.cafepet !== undefined) queryParameterPet= req.query.cafepet;
 
-    connection.query(q,[queryParameterName+"%",queryParameterCity+"%"], (error, results)=>{
+    const q = "select *, business_hours.`day`, business_hours.open_time, business_hours.close_time from cafes " +
+        "inner join business_hours on cafes.cafe_id=business_hours.cafe_id " +
+        "WHERE (cafe_name LIKE ?) AND (location LIKE ?) AND (cost LIKE ?) AND (wifi LIKE ?) AND (noise LIKE ?)" +
+        " AND (food LIKE ?) AND (`group` LIKE ?) AND (gluten LIKE ?) AND (vegetarian LIKE ?) AND (pets LIKE ?);";
+
+    const param = [queryParameterName+"%",queryParameterCity+"%",queryParameterCost+"%",queryParameterWifi+"%",queryParameterNoise+"%",queryParameterFood+"%",queryParameterGroup+"%",queryParameterGluten+"%",queryParameterVeg+"%",queryParameterPet+"%"]
+
+    connection.query(q,param, (error, results)=>{
         res.send(results);
     })
 });
