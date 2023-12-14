@@ -10,65 +10,76 @@
 
 <div class="navbar-container"></div>
 
-<main>
+<main class="mainNewCafe">
     <form>
-        <h1>Create New Cafe</h1>
-        <div class="form-div">
-            <label for="cafe-name">Cafe name </label>
-            <input class="input-field" type="text" id="cafe-name">
-        </div>
-        <div class="form-div">
-            <label for="cafe-location">Location</label>
-            <input class="input-field" type="text" id="cafe-location">
-        </div>
-        <div class="form-div">
-            <label for="cafe-cost">Cost</label>
-            <select name="cost" id="cafe-cost">
-                <option value="low">Low</option>
-                <option value="middle">Middle</option>
-                <option value="high">High</option>
-            </select>
-        </div>
-        <div class="form-div">
-            <label for="cafe-noise">Noise level</label>
-            <select name="cost" id="cafe-noise">
-                <option value="low">Low</option>
-                <option value="middle">Middle</option>
-                <option value="high">High</option>
-            </select>
+        <div class="container">
+        <div class="allOptions">
+            <div class="firstOptions">
+                <h1>Create New Cafe</h1>
+                <div class="form-div">
+                 <label for="cafe-name">Cafe name </label>
+                 <input class="input-field" type="text" id="cafe-name">
+             </div>
+             <div class="form-div">
+                    <label for="cafe-location">Location</label>
+                    <input class="input-field" type="text" id="cafe-location">
+                </div>
+                <div class="form-div">
+                 <label for="cafe-cost">Cost</label>
+                 <select name="cost" id="cafe-cost">
+                        <option value="low">Low</option>
+                         <option value="middle">Middle</option>
+                        <option value="high">High</option>
+                 </select>
+            </div>
+                <div class="form-div">
+                    <label for="cafe-noise">Noise level</label>
+                    <select name="cost" id="cafe-noise">
+                      <option value="low">Low</option>
+                      <option value="middle">Middle</option>
+                      <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+
+
+    <div class="otherOptions">
+        <div class="firstOtherOptions">
+            <div class="form-div">
+                <label for="cafe-group">Group friendly</label>
+                <input class="input-field" type="checkbox" id="cafe-group">
+            </div>
+            <div class="form-div">
+                <label for="cafe-wifi">Free Wifi</label>
+                <input class="input-field" type="checkbox" id="cafe-wifi">
+            </div>
+            <div class="form-div">
+                <label for="cafe-food">Food Available</label>
+                <input class="input-field" type="checkbox" id="cafe-food">
+            </div>
         </div>
 
-        <h2>Other options</h2>
-        <div class="form-div">
-            <label for="cafe-group">Group friendly</label>
-            <input class="input-field" type="checkbox" id="cafe-group">
+        <div class="secondOtherOptions">
+            <div class="form-div">
+                <label for="cafe-gluten">Gluten Free options</label>
+                <input class="input-field" type="checkbox" id="cafe-gluten">
+            </div>
+            <div class="form-div">
+                <label for="cafe-veg">Vegetarian Options</label>
+                <input class="input-field" type="checkbox" id="cafe-veg">
+            </div>
+            <div class="form-div">
+                <label for="cafe-pets">Pets allowed</label>
+                <input class="input-field" type="checkbox" id="cafe-pets">
+            </div>
+            <div>
+                <button type="button" class="submit-button" id="cafe-button">Submit</button>
+            </div>
         </div>
-        <div class="form-div">
-            <label for="cafe-wifi">Free Wifi</label>
-            <input class="input-field" type="checkbox" id="cafe-wifi">
+    </div>
         </div>
-        <div class="form-div">
-            <label for="cafe-food">Food Available</label>
-            <input class="input-field" type="checkbox" id="cafe-food">
-        </div>
-        <div class="form-div">
-            <label for="cafe-gluten">Gluten Free options</label>
-            <input class="input-field" type="checkbox" id="cafe-gluten">
-        </div>
-        <div class="form-div">
-            <label for="cafe-veg">Vegetarian Options</label>
-            <input class="input-field" type="checkbox" id="cafe-veg">
-        </div>
-        <div class="form-div">
-            <label for="cafe-pets">Pets allowed</label>
-            <input class="input-field" type="checkbox" id="cafe-pets">
-        </div>
-        <div>
-            <button type="button" class="submit-button" id="cafe-button">Submit</button>
         </div>
     </form>
-
-    <a href="index.html">Tryk her for at gå tilbage til main menu</a>
 </main>
 
 <script>
