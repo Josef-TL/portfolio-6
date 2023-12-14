@@ -442,6 +442,11 @@ width:50px;
     padding: 3px;
 }
 
+.hours-list h3{
+    font-size: medium;
+    padding: 3px;
+}
+
 .hours-list-item{
     font-size: small;
     padding:6px;
