@@ -41,9 +41,9 @@ function sendNewCafe(user_id, name,location,cost,noise,group,wifi,food,gluten,ve
         body: JSON.stringify(jsonObjectToPost)
     }
 
+
     fetch("http://localhost:3000/cafes/new", fetchConfiguration)
-        .then(res => res.json())
-        .then(res => console.log(res));
+        .then(res => res.ok)
 }
 
 const user = auth.currentUser;

@@ -12,7 +12,7 @@ app.use(express.json());
 const connection = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"Buster42Kuller",
+    password:"Tipsbladet!1997",
     database:"cafes"
 });
 
@@ -25,9 +25,9 @@ app.get('/cafes',(req,res)=>{
     })
 });
 
-    app.get('/signin', (req, res) => {
-        res.sendFile(__dirname + '/index.html');
-    });
+app.get('/signin', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
 app.get('/cafes/search',(req,res)=>{
     let queryParameterName = "";
@@ -96,43 +96,43 @@ app.get('/users/id/:id',(req,res)=>{
     })
 });
 
-    app.post('/favorites/new/', (req, res) => {
-        const user_id = req.body.user_id
-        const cafe_id = req.body.cafe_id
+app.post('/favorites/new/', (req, res) => {
+    const userId = req.body.user_id
+    const cafeId = req.body.cafe_id
 
-connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
-    [user_id, cafe_id],
-    (error, result) =>{
-    res.send("Successful POST request")
-    }
+    connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
+        [userId, cafeId],
+        (error, result) =>{
+            res.send("Successful POST request")
+        }
     )})
 
-    app.post('/cafes/new', (req, res) => {
-        const user = req.body.user_id;
-        const name = req.body.cafe_name;
-        const loc = req.body.location;
-        const cost = req.body.cost;
-        const wifi = req.body.wifi;
-        const noise = req.body.noise;
-        const food = req.body.food;
-        const group = req.body.group;
-        const gluten = req.body.gluten;
-        const veg = req.body.veg;
-        const pet = req.body.pet;
+app.post('/cafes/new', (req, res) => {
+    const user = req.body.user_id;
+    const name = req.body.cafe_name;
+    const loc = req.body.location;
+    const cost = req.body.cost;
+    const wifi = req.body.wifi;
+    const noise = req.body.noise;
+    const food = req.body.food;
+    const group = req.body.group;
+    const gluten = req.body.gluten;
+    const veg = req.body.veg;
+    const pet = req.body.pet;
 
-        connection.query(
-            'INSERT INTO cafes(user_id, cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [user, name, loc, cost, wifi, noise, food, group, gluten, veg, pet],
-            (error, result) => {
-                if (error) {
-                    console.error('Error inserting data into the database:', error);
-                    res.status(500).send("Internal Server Error");
-                } else {
-                    res.status(201).send("Successful POST request");
-                }
+    connection.query(
+        'INSERT INTO cafes(user_id, cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [user, name, loc, cost, wifi, noise, food, group, gluten, veg, pet],
+        (error, result) => {
+            if (error) {
+                console.error('Error inserting data into the database:', error);
+                res.status(500).send("Internal Server Error");
+            } else {
+                res.status(201).send("Successful POST request");
             }
-        );
-    });
+        }
+    );
+});
 
 
 app.post('/users/new',(req,res)=>{
@@ -150,44 +150,45 @@ app.post('/users/new',(req,res)=>{
             res.send("Successful POST request");
         });
 });
-    app.get("/favorits/:id", (req, res) => {
-        const uid = req.params.id;
-        connection.query("SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?",[uid] ,(error, results) => {
-            res.send(results)
-        })
+app.get("/favorits/:id", (req, res) => {
+    const uid = req.params.id;
+    connection.query("SELECT cafes.cafe_id, cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?",[uid] ,(error, results) => {
+        res.send(results)
     })
+})
 
-    app.get('/favorites/user_id/:id', (req, res) => {
-        const userId = req.params.id;
 
-        connection.query(
-            'SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?'
-                [userId],
-            (error, results) => {
-                if (error) {
-                    console.error("Error fetching user's favorite cafes:", error);
-                    res.status(500).json([]);
-                } else {
-                    res.status(200).json(results);
-                }
+app.get('/favorites/user_id/:id', (req, res) => {
+    const userId = req.params.id;
+
+    connection.query(
+        'SELECT cafes.cafe_name FROm favorites INNER JOIN cafes on favorites.cafe_id = cafes.cafe_id WHERE favorites.user_id = ?'
+            [userId],
+        (error, results) => {
+            if (error) {
+                console.error("Error fetching user's favorite cafes:", error);
+                res.status(500).json([]);
+            } else {
+                res.status(200).json(results);
             }
-        )
-    })
+        }
+    )
+})
 
-    app.get('/cafes/username/:id', (req, res) => {
-        const userId = req.params.id;
+app.get('/cafes/username/:id', (req, res) => {
+    const userId = req.params.id;
 
-        connection.query(
-            'SELECT cafe_name from cafes WHERE user_id= ?', [userId], (error, results) => {
-                if (error) {
-                    console.error("Error fetching user's favorite cafes:", error);
-                    res.status(500).json([]);
-                } else {
-                    res.status(200).json(results);
-                }
+    connection.query(
+        'SELECT cafe_name from cafes WHERE user_id= ?', [userId], (error, results) => {
+            if (error) {
+                console.error("Error fetching user's favorite cafes:", error);
+                res.status(500).json([]);
+            } else {
+                res.status(200).json(results);
             }
-        )
-    })
+        }
+    )
+})
 
     app.get('/profilpage/:id', (req, res) => {
         const userId = req.params.id;
