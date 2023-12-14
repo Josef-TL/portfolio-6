@@ -119,10 +119,12 @@ connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
         const gluten = req.body.gluten;
         const veg = req.body.veg;
         const pet = req.body.pet;
+        const open = req.body.open_time
+        const close =req.body.close_time
 
         connection.query(
-            'INSERT INTO cafes(user_id, cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-            [user, name, loc, cost, wifi, noise, food, group, gluten, veg, pet],
+            'INSERT INTO cafes(user_id, cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets,open_time,close_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)',
+            [user, name, loc, cost, wifi, noise, food, group, gluten, veg, pet,open,close],
             (error, result) => {
                 if (error) {
                     console.error('Error inserting data into the database:', error);
@@ -132,6 +134,7 @@ connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
                 }
             }
         );
+
     });
 
 
