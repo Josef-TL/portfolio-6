@@ -107,18 +107,18 @@ connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
     }
     )})
 
-    app.post('/cafes/new', (req, res) => {
-        const user = req.body.user_id;
-        const name = req.body.cafe_name;
-        const loc = req.body.location;
-        const cost = req.body.cost;
-        const wifi = req.body.wifi;
-        const noise = req.body.noise;
-        const food = req.body.food;
-        const group = req.body.group;
-        const gluten = req.body.gluten;
-        const veg = req.body.veg;
-        const pet = req.body.pet;
+app.post('/cafes/new', (req, res) => {
+    const user = req.body.user_id;
+    const name = req.body.cafe_name;
+    const loc = req.body.location;
+    const cost = req.body.cost;
+    const wifi = req.body.wifi;
+    const noise = req.body.noise;
+    const food = req.body.food;
+    const group = req.body.group;
+    const gluten = req.body.gluten;
+    const veg = req.body.veg;
+    const pet = req.body.pet;
 
         connection.query(
             'INSERT INTO cafes(user_id, cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -126,13 +126,42 @@ connection.query('insert into favorites(user_id, cafe_id) VALUES(?,?)',
             (error, result) => {
                 if (error) {
                     console.error('Error inserting data into the database:', error);
-                    res.status(500).send("Internal Server Error");
+                    connection.rollback(() => {
+                        res.status(500).send('Internal Server Error');
+                    });
                 } else {
-                    res.status(201).send("Successful POST request");
+                    const cafeId = result.insertId;
+
+                    const openTime = req.body.open_time;
+                    const closeTime = req.body.close_time;
+
+                    connection.query(
+                        'INSERT INTO business_hours(cafe_id, open_time, close_time) VALUES (?, ?, ?)',
+                        [cafeId, openTime, closeTime],
+                        (businessHoursError) => {
+                            if (businessHoursError) {
+                                console.error('Error inserting data into the business_hours table:', businessHoursError);
+                                connection.rollback(() => {
+                                    res.status(500).send('Internal Server Error');
+                                });
+                            } else {
+                                connection.commit((commitError) => {
+                                    if (commitError) {
+                                        console.error('Error committing transaction:', commitError);
+                                        connection.rollback(() => {
+                                            res.status(500).send('Internal Server Error');
+                                        });
+                                    } else {
+                                        res.status(200).send('Cafe and business hours added successfully');
+                                    }
+                                });
+                            }
+                        }
+                    );
                 }
             }
         );
-    });
+});
 
 
 app.post('/users/new',(req,res)=>{
