@@ -118,7 +118,6 @@ if (addToFavoritesButtons) {
             let uid = user.uid;
             let favStore = [];
 
-
             addToFavoritesButtons.forEach((button) => {
                 // IF parent element id IN favorites
                 const cafeId = button.parentElement.getAttribute("data-cafe-id");
@@ -126,7 +125,6 @@ if (addToFavoritesButtons) {
 
                 button.addEventListener("click", (event) => {
                     const userID = user.uid
-
                     // Make a POST request to your API to add the cafe to the user's favorites
                     fetch("http://localhost:3000/favorites/new/", {
                         method: "POST",
@@ -137,11 +135,6 @@ if (addToFavoritesButtons) {
                             user_id: userID, // Use the user's UID
                             cafe_id: cafeId,
                         }),
-                    })
-                    .then((res) => {
-                        if(res.ok) {
-                            return  res.ok
-                        }
                     })
                     .catch((error) => {
                         console.error("Error adding cafe to favorites:", error);
