@@ -23,7 +23,7 @@ function createCafeListElement(cafeObj){
         <div class="cafe-item-loc">
             ${cafeObj.location}
         </div>
-        <div class="cafe-item-tag">Test</div>
+        <div class="cafe-item-tag"></div>
         <div class="cafe-item-hours"></div> 
     <button class="add-to-favorites">Star</button>`
     cafeList.appendChild(newElement)

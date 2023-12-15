@@ -118,14 +118,6 @@ if (addToFavoritesButtons) {
             let uid = user.uid;
             let favStore = [];
 
-            fetch("http://localhost:3000/favorits/"+uid)
-                .then(res=>res.json())
-                .then(data=>{
-                    data.forEach((e)=>{
-                        favStore.push(e.cafe_id)
-                    })
-                    console.log(favStore)
-                })
 
             addToFavoritesButtons.forEach((button) => {
                 // IF parent element id IN favorites
