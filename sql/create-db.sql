@@ -42,18 +42,18 @@ create table favorites (
     foreign key (user_id) references users(user_id)
 );
 
-insert into cafes(cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets)
+insert into cafes(cafe_name, location, cost, wifi, noise, food, `group`, gluten, vegetarian, pets, open_time, close_time)
 values
-('minas','nørrebro','low',true,'middle',true,false,true,true,false),
-('Study Brew','nørrebro','low',true,'low',true,true,false,true,false),
-('Code Corner','Frederiksberg','middle',true,'middle',true,false,true,true,true),
-('Espresso Emporium','Østerbro','high',true,'low',false,true,false,true,true),
-('Green Grind','Vesterbro','middle',true,'low',true,false,true,true,false),
-('The Latte Lounge','Indre By','low',true,'middle',true,false,true,true,false),
-('Nordic Nook','Christianshavn','middle',true,'high',true,false,true,true,false),
-('The Artisan\'s Brew','Valby','low',true,'low',true,false,true,true,false),
-('Café Cerebral','nørrebro','low',true,'middle',true,false,true,true,false),
-('Bibliotek Barista','nørrebro','low',true,'middle',true,false,true,true,false);
+('minas','nørrebro','low',true,'middle',true,false,true,true,false, 080000,150000),
+('Study Brew','nørrebro','low',true,'low',true,true,false,true,false, 080000,150000),
+('Code Corner','Frederiksberg','middle',true,'middle',true,false,true,true,true, 080000,150000),
+('Espresso Emporium','Østerbro','high',true,'low',false,true,false,true,true, 080000,150000),
+('Green Grind','Vesterbro','middle',true,'low',true,false,true,true,false, 080000,150000),
+('The Latte Lounge','Indre By','low',true,'middle',true,false,true,true,false, 080000,150000),
+('Nordic Nook','Christianshavn','middle',true,'high',true,false,true,true,false, 080000,150000),
+('The Artisan\'s Brew','Valby','low',true,'low',true,false,true,true,false, 080000,150000),
+('Café Cerebral','nørrebro','low',true,'middle',true,false,true,true,false, 080000,150000),
+('Bibliotek Barista','nørrebro','low',true,'middle',true,false,true,true,false, 080000,150000);
 
 insert into users(user_id,user_name,first_name,last_name,email)
 values

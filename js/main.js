@@ -2,7 +2,7 @@ const cafeList = document.querySelector("#cafe-list")
 const userList = document.querySelector("#user-list")
 const submitButton = document.querySelector(".submit-button")
 
-const dayArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+const dayArray = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
 function createEmptyListElement() {
     const newElement = document.createElement("li");
@@ -29,17 +29,17 @@ function createCafeListElement(cafeObj){
     cafeList.appendChild(newElement)
 
 }
-function createCafeHoursElement(hours){
+function createCafeHoursElement(hoursData){
     const newUl = document.createElement("ul")
     newUl.classList.add("hours-list")
-    const liElement = document.querySelector(`#cafe-element-${hours[0].cafe_id} .cafe-item-hours`);
+    const liElement = document.querySelector(`#cafe-element-${hoursData.cafe_id} .cafe-item-hours`);
     newUl.innerHTML = `<h3>Opening Hours</h3>`
     const returnArray = [];
 
-    hours.push(hours.shift());
-    hours.forEach((e)=>{
-        returnArray.push(dayArray[e.day]+" "+e.open_time.slice(0,2)+"-"+e.close_time.slice(0,2));
-    });
+    dayArray.forEach((e)=>{
+        returnArray.push(e + " " + hoursData.open_time.slice(0,2) + "-" + hoursData.close_time.slice(0,2))
+    })
+
 
 
     returnArray.forEach((e)=>{
@@ -65,15 +65,11 @@ function fetchCafeData (){
     fetch("http://localhost:3000/cafes/search"+queryString)
         .then(response => response.json())
         .then(data => {
-            const key = 'cafe_id'
-            const unique = [...new Map(data.map(item =>
-                [item[key], item])).values()];
+            if(data.length !== 0){
+                data.forEach(e => {
 
-            if(unique.length !== 0){
-                unique.forEach(e => {
-                    const businessHours = data.filter((elem)=>elem.cafe_id === e.cafe_id);
                     createCafeListElement(e);
-                    createCafeHoursElement(businessHours);
+                    createCafeHoursElement(e);
                 });
             }
             else {
